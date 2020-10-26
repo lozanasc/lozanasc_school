@@ -1,5 +1,6 @@
 # CSC 304 - Web Programming
 ***
+![HTML logo](./assets/html.png)
 ## Activity #1
 ###### Instructions:
 I want you to create a simple webpages (2 or more webpages for linking purposes) containing:
@@ -12,12 +13,12 @@ I want you to create a simple webpages (2 or more webpages for linking purposes)
 6. HTML Lists 
 ***
 ### TODO:
-- [ ] Heading
-- [ ] Meta tags
-- [ ] Paragraph
-- [ ] Special characters
-- [ ] Images
-- [ ] Link
-- [ ] Lists
+- [x] Heading
+- [x] Meta tags
+- [x] Paragraph
+- [x] Special characters
+- [x] Images
+- [x] Link
+- [x] Lists
 ***
 `Note: We may have used Deprecated attributes XP`
