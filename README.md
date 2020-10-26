@@ -1,3 +1,4 @@
-![School programs repo banner](https://thinkmy3d.net/blog/wp-content/uploads/2020/01/elearning-My3D.jpg)
-# Backup repo to store Programs from School
+![School Repo Banner](/assets/school_repo_banner.jpg)
+# School Repository  
+Where I store all programs that I created for School
 Feel free to fork and serve it as your referrence!
