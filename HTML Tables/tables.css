@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ze body */
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 100px;
+    background-color: dodgerblue;
+}
+body > h1 {
+    color: white;
+    text-align: center;
+    margin: 15px 0;
+    font-size: 3em;
+    
+}
+/* Table container */
+.container_table {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    filter: drop-shadow(0 5px 0.25rem rgba(0, 0, 0, 0.397));
+}
+
+/* Header information's container */
+.header_table {
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+    margin: 0 10px;
+    align-items: flex-end;
+}
+.header_table ul {
+    list-style-type: none;
+}
+.header_table ul li {
+    margin: 10px 0;
+}
+
+/* Order information table config*/
+.order_information {
+    color: white;
+    background-color: dodgerblue;
+    padding: 10px;
+    border: none;
+    filter: drop-shadow(0 3px 0.25rem rgba(0, 0, 0, 0.397));
+}
+/* table header configuration */
+.order_information {
+    border-collapse: collapse;
+}
+.order_information thead {
+    padding: 5px;
+    font-size: 20px;
+}
+/* table body configuration */
+.order_information tbody {
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 20px;
+    text-align: center;
+}
+.order_information tbody > tr:nth-child(odd) {
+    background-color: #FFCC99;
+}
+.order_information tbody > tr:nth-child(even) {
+    background-color: #FF9966;
+}
