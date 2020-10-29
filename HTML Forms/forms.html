@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="Author" content="Sean Christian Lozana">
+    <meta name="Subject" content="Web Programming">
+    <meta name="Activity" content="HTML Forms">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/forms.css">
+    <title>HTML Forms</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left_container" >
+            <form method="post">
+                <!-- Email address tf -->
+                <span>
+                    <label for="email">
+                        Email address :
+                    </label>
+                <input type="text" class="textfield" id="email" placeholder="Enter your email here">
+                </span>
+                <!-- Credit card number tf -->
+                <span>
+                    <label for="credit_card">
+                        Credit card number :
+                    </label>
+                <input type="text" class="textfield" id="credit_card" placeholder="Enter your credit card information here">
+                <label for="credit_card">[Optional]</label>
+                </span>
+                <!-- Credit card type -->
+                <span>
+                    <label for="credit_card_type">
+                        Credit card type :
+                    </label>
+                    <select name="credit_card_type" id="credit_card_type">
+                        <option value="MasterCard">Master Card</option>
+                        <option value="MasterCard">Visa</option>
+                        <option value="MasterCard">Leat Fingies</option>
+                    </select>
+                </span>
+                <!-- Personal information -->
+                <!-- Full name -->
+                <span>
+                    <label for="name">
+                        Personal Name :
+                    </label>
+                <input type="text" class="textfield" id="name" placeholder="Full name goes here">
+                </span>
+                <!-- Age -->
+                <span>
+                    <label for="age">
+                        Age :
+                    </label>
+                <input type="number" class="textfield" id="age" placeholder="Age goes here">
+                </span>
+                <!-- Weight -->
+                <span>
+                    <label for="weight">
+                        Weight :
+                    </label>
+                <input type="number" class="textfield" id="weight" placeholder="Weight goes here">
+                </span>
+                <!-- Homepage -->
+                <span>
+                    <label for="homepage">
+                        Homepage :
+                    </label>
+                <input type="url" class="textfield" id="homepage" placeholder="Personal website goes here">
+                </span>
+                <!-- Access name -->
+                <span>
+                    <label for="access_name">
+                        Access name : 
+                    </label>
+                <input type="text" class="textfield" id="access_name" placeholder="Access name goes here">
+                </span>
+                <!-- Password -->
+                <span>
+                    <label for="password">
+                        Password : 
+                    </label>
+                <input type="password" class="textfield" id="password" placeholder="Secret stuff input">
+                </span>
+                <!-- Confirm password -->
+                <span>
+                    <label for="confirm_password">
+                        Confirm password :
+                    </label>
+                    <input type="password" class="textfield" id="confirm_password" placeholder="Secret stuff input">
+                </span>
+                <!-- Password reminder -->
+                <span>
+                    <label for="reminder_password">
+                        Password Reminder : 
+                    </label>
+                <input type="password" class="textfield" id="reminder_password">
+                </span>
+                <h3 style="text-align: center;"> When approved, receive notification by </h3>
+            </form>
+            <!-- Form for notipikasyon -->
+            <form>
+                 <!-- Email notif-->
+                 <span>
+                    <label for="notification_email">
+                        Email :
+                    </label>
+                    <input type="checkbox" id="notification_email">
+                </span>
+                <!-- Phone notif -->
+                <span>
+                    <label for="notification_phone">
+                        Phone :
+                    </label>
+                    <input type="checkbox" id="notification_phone">
+                </span>
+
+            </form>
+            <h3 style="text-align: center;"> Subscription Type:  </h3>
+            <!-- Form for subscrebsion -->
+            <form>
+                 <!-- Subscreb admin -->
+                 <span>
+                    <label for="subscribe_admin">
+                        Administrator : 
+                    </label>
+                    <input type="radio" id="subscribe_admin">
+                </span>
+                <!-- Subscreb user -->
+                <span>
+                    <label for="subscribe_user">
+                        User : 
+                    </label>
+                    <input type="radio" id="subscribe_user">
+                </span>
+                <!-- Subscreb guest -->
+                <span>
+                    <label for="subscribe_guest">
+                        Guest :
+                    </label>
+                    <input type="radio" id="subscribe_guest">
+                </span>
+                <!-- Toggle button -->
+                <span>
+                    <label for="button_toggle">
+                        Toggle Button : 
+                    </label>
+                    <button class="button">
+                        On
+                    </button>
+                </span>
+            </form>
+            <hr>
+             <!-- Agreementism -->
+             <span>
+                <label for="agree">
+                    Agree with forms :
+                </label>
+                <input type="checkbox" id="agree">
+            </span>
+            <hr>
+            <div style="display: flex; justify-content: center;">
+                <img src="/assets/arrow_right.png" alt="An arrow inside a circle" height="30px" width="30px" style="margin: auto 0;">
+                <button class="button">
+                    Submit Subscription
+                </button>
+
+            </div>
+        </div>
+        <div class="right_container">
+            <form method="post">
+                <span>
+                    <label for="date">
+                        Date:
+                    </label>
+                    <input type="date" name="date" id="date">
+                </span>
+            </form>
+            <hr>
+            <!-- Schedule -->
+            <div style="display: flex; justify-content: center;">
+                <img src="/assets/time.png" alt="A clock" height="30px" width="30px" style="margin: auto 0;">
+                <button class="button">
+                    Set schedule
+                </button>
+            </div>
+            <hr>
+            <!-- Login? -->
+            <form>
+              <!-- Access name -->
+              <span>
+                <label for="access_name">
+                    Access name : 
+                </label>
+            <input type="text" class="textfield" id="access_name" placeholder="Access name goes here">
+            </span>
+            <!-- Password -->
+            <span>
+                <label for="password">
+                    Password : 
+                </label>
+            <input type="password" class="textfield" id="password" placeholder="Secret stuff input">
+            </span>
+            </form>
+            <!-- Login -->
+            <hr>
+                <div style="display: flex; justify-content: center;">
+                    <img src="/assets/login.png" alt="An arrow inside a circle" height="30px" width="30px" style="margin: auto 0;">
+                    <button class="button">
+                        Login
+                    </button>
+                </div>
+            <hr>
+            <!-- Drop file type of thing -->
+            <form>
+                <span>
+                    <label for="image_file">
+                        Image File :
+                    </label>
+                    <input type="file" name="image_file" id="image_file">
+                </span>
+            </form>
+            <hr>
+            <div style="display: flex; justify-content: center;">
+                <img src="/assets/upload.png" alt="An arrow facing up with a vertical line below" height="30px" width="30px" style="margin: auto 0;">
+                <button class="button">
+                    Upload
+                </button>
+            </div>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>
