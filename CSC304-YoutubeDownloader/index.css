@@ -1,19 +1,99 @@
 body {
+    margin: 0;
+    padding: 0;
     height: 100%;
     background-image: url('./assets/bg-repeat.png');
     background-color: rgb(65, 65, 65);
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+#About {
+    float: right;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor: pointer;
+}
+#About > img {
+    height: 50px;
+    width: 50px;
+}
+#About:focus {
+    outline: none;
+}
+
+/* * Main Container Property */
 .container {
-    display:flex;
+    height: 100vh;
+    display: flex;
+    margin: auto;
     flex-flow: column;
     justify-content: space-evenly;
 }
-form {
+/* * Navigation container */
+nav {
+     display: flex;
+     background-color: white;
+}
+nav > ul {
+    list-style-type: none;
+}
+nav > ul > li {
+    float: left;
+    margin: auto 10px;
+}
+nav > ul > li > a > img {
+    height: 50px;
+    width: 50px;
+    filter: drop-shadow(0 6px 0.5rem rgba(0, 0, 0, 0.596));
+}
+/* * Project Information Container */
+.groupInformation {
+    margin: auto;
+}
+.disabled {
+    display: none;
+}
+
+/* URL Form Container */
+.urlForm {
     display: flex;
     flex-flow: column;
 }
+.urlForm > h1 {
+    color: white;
+}
+/* * Card Properties */
+.card {
+    background-color: white;
+    border-radius: 50px;
+    margin: 10px auto;
+    display: flex;
+    padding: 20p;
+}
+
+.card > img {
+    height: 100px;
+    width: 100px;
+    border-radius: 999999px;
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.452));
+    margin: 0 20px 0 0;
+}
+
+.card > span {
+    display: flex;
+    flex-flow: column;
+}
+
+.card > span h3 {
+    color: red;
+}
+
+.card span > h3, h4 {
+    margin: 0;
+    text-align: start;
+}
+
+/* * Input Properties */
 input {
     min-width: 80%;
     min-height: 60px;
@@ -35,11 +115,22 @@ input:focus{
     filter: drop-shadow(0 2px 0.15rem rgba(0, 0, 0, 0.281));
 }
 
-button {
+/* * Button Properties */
+.urlForm > button {
+    transition: 0.3s ease-in-out;
     min-width: 200px;
     height: 50px;
-    margin: auto;
+    margin: 5px auto;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
 }
-button:focus{
+.urlForm > button:focus{
     outline: none;
+}
+.urlForm > button:hover {
+    filter: drop-shadow(0 2px 0.15rem rgba(0, 0, 0, 0.281));
 }
