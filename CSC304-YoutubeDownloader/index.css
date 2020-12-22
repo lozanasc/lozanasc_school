@@ -2,12 +2,23 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-image: url('./assets/bg-repeat.png');
+    /* background-image: url('./assets/bg-repeat.png'); */
     background-color: rgb(65, 65, 65);
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+/* * Main Container Property */
+.container {
+
+    display: flex;
+    margin: auto;
+    flex-flow: column;
+}
+
 #About {
+    align-self: flex-end;
     float: right;
     background-color: rgba(255, 255, 255, 0);
     border: none;
@@ -21,54 +32,50 @@ body {
     outline: none;
 }
 
-/* * Main Container Property */
-.container {
-    height: 100vh;
-    display: flex;
-    margin: auto;
-    flex-flow: column;
-    justify-content: space-evenly;
-}
-/* * Navigation container */
-nav {
-     display: flex;
-     background-color: white;
-}
-nav > ul {
-    list-style-type: none;
-}
-nav > ul > li {
-    float: left;
-    margin: auto 10px;
-}
-nav > ul > li > a > img {
-    height: 50px;
-    width: 50px;
-    filter: drop-shadow(0 6px 0.5rem rgba(0, 0, 0, 0.596));
-}
-/* * Project Information Container */
+/* * Group Information Container */
 .groupInformation {
-    margin: auto;
-}
-.disabled {
-    display: none;
-}
-
-/* URL Form Container */
-.urlForm {
+    transition: 1s ease-in-out;
+    min-height: 100vh;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.712);
     display: flex;
     flex-flow: column;
+    display: none;
+    position: fixed;
+    z-index: 1;
 }
-.urlForm > h1 {
+.groupInformation > h1 {
     color: white;
 }
+.groupInformation > button {
+    height: 50px;
+    width: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+}
+.groupInformation > button:focus{
+    outline: none;
+}
+.disable {
+     display: none;
+}
+.enable {
+    display:flex;
+    flex-flow: column;
+}
+
 /* * Card Properties */
 .card {
+    width: 50%;
     background-color: white;
     border-radius: 50px;
     margin: 10px auto;
     display: flex;
-    padding: 20p;
+    padding: 20px;
 }
 
 .card > img {
@@ -85,12 +92,21 @@ nav > ul > li > a > img {
 }
 
 .card > span h3 {
-    color: red;
+    color: rgb(65, 65, 65);
 }
 
 .card span > h3, h4 {
     margin: 0;
     text-align: start;
+}
+
+/* URL Form Container */
+.urlForm {
+    display: flex;
+    flex-flow: column;
+}
+.urlForm > h1 {
+    color: white;
 }
 
 /* * Input Properties */
@@ -133,4 +149,46 @@ input:focus{
 }
 .urlForm > button:hover {
     filter: drop-shadow(0 2px 0.15rem rgba(0, 0, 0, 0.281));
+}
+
+/* * Result Properties */
+.resultContainer {
+    display: flex;
+    flex-flow: column;
+    background-color: white;
+    margin: 30px auto;
+    min-width: 80%;
+    padding: 20px;
+}
+.resultContainer > img {
+    height: 300px;
+    width: 600px;
+    margin: auto;
+}
+/* * Instruction Container */
+.instructionContainer {
+    display: flex;
+    flex-flow: column;
+}
+.instructionContainer >  h1 {
+    color: white;
+    margin: 0 auto;
+}
+.instructionContainer > h3 {
+    margin: 0 auto;
+    color: white;
+    text-align: start;
+}
+/* * Result is a Card */
+.result {
+    background-color: white;
+    min-width: 80%;
+    margin: auto;
+}
+.result > img {
+    height: 100px;
+    width: 100px;
+    border-radius: 999999px;
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.452));
+    margin: 0 20px 0 0;
 }
