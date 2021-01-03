@@ -3,6 +3,15 @@ const ModalButton = document.querySelector('#DownloadBtn');
 const ModalResultContainer = document.querySelector('.Result');
 const URLInput = document.querySelector('#URLInput');
 
+const Download = async(url) => {
+    try {
+        const DL = await fetch(`./Download?url=${URL}`, {method: 'GET'});
+        return DL.json();
+    } catch (error) {
+        alert(error);
+    }
+}
+
 /**
  * Loading Animation while waiting for Data being Fetched
  */
@@ -21,7 +30,7 @@ const SetLoading = () => {
  * @param {Number} Count 
  */
 const DescriptionLimiter = (Text, Count) => {
-    if(Text.length <= 0)
+    if(Text.length <= 0 || Text ==  null)
         return 'No description';
     else
         return Text.slice(0, Count) + (Text.length > Count ? "..." : "");
@@ -37,7 +46,11 @@ const Downloadable = (FormatName, FormatDownloadableURL) => {
     const DownloadableBtn = document.createElement('button');
     DownloadableBtn.innerHTML = FormatName;
     DownloadableBtn.id = 'Downloadables';
-    DownloadableBtn.addEventListener('click', e => window.open(FormatDownloadableURL, '_blank'));
+    DownloadableBtn.addEventListener('click', e => {
+        Download(FormatDownloadableURL)
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+    });
     return DownloadableBtn;
 }
 // Modal for the Result View
@@ -52,7 +65,7 @@ const Downloadable = (FormatName, FormatDownloadableURL) => {
  * @param {Array} DownloadableStream 
  * Array of all Downloadable file formats
  */
-const ModalResult = (Title , Description , Thumbnail, DownloadableStream) => {
+const ModalResult = (Thumbnail, Title, Description, DownloadableStream) => {
     
     const ModalCancelButton = document.createElement('button');
     ModalCancelButton.innerHTML = 'Cancel';
@@ -73,14 +86,27 @@ const ModalResult = (Title , Description , Thumbnail, DownloadableStream) => {
     const ResultDownloadableContent = document.createElement('div');
     ResultDownloadableContent.className = 'DownloadableContent';
 
+    DownloadableStream.length <= 0 ? 
+    (
+        ResultDownloadableContent.createElement('h1').innerHTML = 'No available format downloadable'
+    )
+    :
     DownloadableStream.map(Stream => {
+        Stream.qualityLabel == null ?
+        null
+        :
         ResultDownloadableContent.appendChild(Downloadable(Stream.qualityLabel, Stream.url));
-    })
+    });
 
     const ResultContainer = document.createElement('div');
     ResultContainer.className = 'Result';
+    // ResultContainer.append(ModalCancelButton, 
+    //                         ResultThumbnail, 
+    //                         ResultTitle, 
+    //                         ResultDescription, 
+    //                         ResultDownloadableContent
+    //                         );
     ResultContainer.append(ModalCancelButton, ResultThumbnail, ResultTitle, ResultDescription, ResultDownloadableContent);
-
     return ResultContainer;
 }
 
@@ -104,9 +130,14 @@ const ModalResult = (Title , Description , Thumbnail, DownloadableStream) => {
 //         console.log(error);
 //     }
 // }
+// Created my own API using ytdl-core module
+/**
+ * 
+ * @param {String} url accepts URL strictly from Youtube if otherwise will throw an error
+ */
 const GetVideoDownloadable = async(url) => {
     try{
-        const Data = await fetch(`http://localhost:6969/GetInfoDownloadable?url=${url}`,{
+        const Data = await fetch(`./GetInfoDownloadable?url=${url}`,{
             method: 'GET'
         });
         return Data.json();
@@ -122,13 +153,14 @@ ModalButton.addEventListener('click',
         MainContainer.appendChild(SetLoading());
 
         GetVideoDownloadable(URLInput.value)
-        .then(res => 
+        .then(({VideoDetails: VideoInformation, DownloadStream: Stream}) => 
         {
             MainContainer.getElementsByClassName('Loading').item(0).remove();
-            console.log(res);
-            MainContainer.appendChild(ModalResult(res.Title, res.ResultDesc, res.ResultThumbnail, res.ResultDownloadables));
+            console.log(VideoInformation, Stream);
+            const {title: Title, description: Description, thumbnails: Thumbnails} = VideoInformation;
+            MainContainer.appendChild(ModalResult(Thumbnails[4].url, Title, Description, Stream));
         }
         )
-        .catch(err => alert('Something went wrong!', err));
+        .catch(err => alert(err));
     }
 )
