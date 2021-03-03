@@ -2,11 +2,8 @@
 [![Stargazers][stars-shield]][stars-url]
 ![School Repo Banner](/assets/school_repo_banner.jpg)
 <br/>
-<h2 align = "center"> 
-  Personal School Repository 
-</h2>
-<p align = "center"> 
-  Repository responsible for storing all my previous programs created to comply with school requirements 😆 
+<h2 align = "center"> Personal School Repository </h2>
+<p align = "center"> Repository responsible for storing all my previous programs created to comply with school requirements 😆 
 </p>
 
 
