@@ -6,7 +6,28 @@
 <p align = "center"> Repository responsible for storing all my previous programs created to comply with school requirements 😆 
 </p>
 
-
+<!-- About this Project -->
+## About this Repository
+As stated above this repository contains all programs that I think is worthy of showcasing while I'm still studying Computer Science @ NORSU  
+  
+If you're browsing this repository there's a good chance that you're new to Computer Science looking for resources to learn from, well you're in the right repository, this repo contains projects ranging from beginner to advanced projects that is well documented, you can serve it as your reference by forking or cloning this repository, though I have only one condition; ⭐ the repo, thank you and happy coding 🎊  
+<!-- Built with -->
+### Built With
+The projects in this repository is built with multiple technologies:
+* **Java**
+  * <a href = "https://docs.oracle.com/javase/8/docs/technotes/guides/swing/index.html"> Swing API </a>
+  * <a href = "https://openjfx.io/"> JavaFX </a>
+  * <a href = "https://www.cdata.com/drivers/mysql/jdbc/"> JDBC </a>    
+* **C++**  
+  <a href = "https://docs.oracle.com/en/java/"> Getting started with C++ </a>
+* **HTML**  
+  <a href = "https://www.w3schools.com/html/"> Getting started with HTML </a>
+* **CSS**
+  * <a href = "https://sass-lang.com/documentation"> Sass/Scss </a>
+* **JavaScript**
+  * React 
+  * NodeJS
+  * Express
 <!-- MARKDOWN LINKS & IMAGES -->
 [forks-shield]: https://img.shields.io/github/forks/lozanasc/lozanasc_school?style=for-the-badge
 [forks-url]: https://github.com/lozanasc/lozanasc_school/network/members
