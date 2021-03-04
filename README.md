@@ -26,6 +26,9 @@ The projects in this repository is built with multiple technologies:
   * <a href = "https://www.cdata.com/drivers/mysql/jdbc/"> React </a> 
   * <a href = "https://nodejs.org/en/docs/"> NodeJS </a> 
   * <a href = "http://expressjs.com/"> ExpressJS </a>
+
+## Getting Started
+
 <!-- Resources to get started learning -->
 ### Resources:
 **<a href = "https://docs.oracle.com/en/java/"> Getting started with C++ </a>**  
