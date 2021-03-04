@@ -21,11 +21,11 @@ The projects in this repository is built with multiple technologies:
 * **C++**  
 * **HTML**  
 * **CSS**
-  * <a href = "https://sass-lang.com/documentation"> Sass/Scss </a>
+  * <a href = "https://reactjs.org/docs/getting-started.html"> Sass/Scss </a>
 * **JavaScript**
-  * React 
-  * NodeJS
-  * Express
+  * <a href = "https://www.cdata.com/drivers/mysql/jdbc/"> React </a> 
+  * <a href = "https://nodejs.org/en/docs/"> NodeJS </a> 
+  * <a href = "http://expressjs.com/"> ExpressJS </a>
 <!-- Resources to get started learning -->
 ### Resources:
 **<a href = "https://docs.oracle.com/en/java/"> Getting started with C++ </a>**  
