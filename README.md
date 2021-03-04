@@ -19,15 +19,17 @@ The projects in this repository is built with multiple technologies:
   * <a href = "https://openjfx.io/"> JavaFX </a>
   * <a href = "https://www.cdata.com/drivers/mysql/jdbc/"> JDBC </a>    
 * **C++**  
-  <a href = "https://docs.oracle.com/en/java/"> Getting started with C++ </a>
 * **HTML**  
-  <a href = "https://www.w3schools.com/html/"> Getting started with HTML </a>
 * **CSS**
   * <a href = "https://sass-lang.com/documentation"> Sass/Scss </a>
 * **JavaScript**
   * React 
   * NodeJS
   * Express
+<!-- Resources to get started learning -->
+### Resources:
+**<a href = "https://docs.oracle.com/en/java/"> Getting started with C++ </a>**  
+**<a href = "https://www.w3schools.com/html/"> Getting started with HTML </a>**  
 <!-- MARKDOWN LINKS & IMAGES -->
 [forks-shield]: https://img.shields.io/github/forks/lozanasc/lozanasc_school?style=for-the-badge
 [forks-url]: https://github.com/lozanasc/lozanasc_school/network/members
