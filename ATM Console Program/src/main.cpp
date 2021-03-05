@@ -24,11 +24,14 @@
 
 using std::cout;
 using std::cin;
+using std::string;
+
 
 // TODO:
 // Create a Menu Interface
-void Start(){
-  int choice;
+void Start(Machine ATM){
+  bool InUse = true;
+  int Choice;
   cout << "#=============================================================================================================# \n";
   cout << "#                                                                                                             # \n";
   cout << "#                                                                                                             # \n";
@@ -42,17 +45,24 @@ void Start(){
   cout << "#                                                                                                             # \n";
   cout << "#         Made by: Sean Christian Lozana                                                                      # \n";
   cout << "#         [1] Create Account                                                                                  # \n";
-  cout << "#         [2] Sign in                                                                                         # \n";
+  cout << "#         [2] Show All Accounts                                                                                         # \n";
   cout << "#                                                                                                             # \n";
   cout << "#=============================================================================================================# \n";
-  cout << "[CHOICE] => ";cin >> choice;
-  switch(choice){
+  cout << "[CHOICE] => ";cin >> Choice;
+  switch(Choice){
     case 1: {
-      cout << "Hitting create account! \n";
+      int Pin;
+      string Name;
+      double Balance;
+      cout<<"Enter PIN: ";cin>>Pin;cout<<"\n";
+      cout<<"Enter Name: ";cin>>Name;cout<<"\n";
+      cout<<"Enter Initial Deposit: ";cin>>Balance;cout<<"\n";
+      ATM.CreateAccount(Name, Pin, Balance);
+      Start(ATM);
       break;
     }
     case 2: {
-      cout << "Hitting sign on account! \n";
+      ATM.ShowAllAccounts();
       break;
     }
     default:
@@ -65,6 +75,7 @@ void Start(){
 
 // Main driver function
 int main(){
-  Start();
+  Machine ATM;
+  Start(ATM);
   return 0;
 }
