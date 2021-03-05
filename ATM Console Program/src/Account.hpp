@@ -24,7 +24,10 @@ public:
       this->Name = UserName;
       this->Balance = UserBalance;
   }
+  // A Deposit function that will return the sum of the added @param Amount to the instance variable Balance
   double ToDeposit(double Amount){return (Amount+this->Balance);}
+  // The Withdraw function will return the difference of the subtracted @param Amount to the instance variable Balance
   double ToWithdraw(double Amount){return (Amount-this->Balance);}
+  // Will return the balance instance variable
   double GetBalance(){return this->Balance;}
 };

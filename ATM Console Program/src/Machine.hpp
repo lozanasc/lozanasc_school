@@ -6,21 +6,28 @@
 // Dependency Imports
 #include "Account.hpp"
 
-// class List {
-//
-//   public:
-// };
-
-class Node {
+class Machine {
   public:
-    Account Info;
-    Node* Next;
+  class Node {
+      public:
+        Account Info;
+        Node* Next;
+        // Constructor that initializes the new
+        Node(Account NewAccount){
+          this->Info = NewAccount;
+          Next = NULL;
+        }
 
-    void CreateAccount(Node** Head, Account NewAccount){
-      // Allocating a new node in the List
-      Node* NewNode = new Node();
+    };
 
-      NewNode->Info = NewAccount;
-      
+    // Allocates the headptr and points it to null as its initial state
+    class Node* Head = NULL;
+    // Allocates the Lastptr and points it to null as its initial state
+    class Node* Last = NULL;
+
+    void CreateAccount(Account NewAccount){
+
     }
-};
+
+
+}
