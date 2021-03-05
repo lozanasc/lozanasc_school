@@ -13,11 +13,10 @@ class Machine {
         Account Info;
         Node* Next;
         // Constructor that initializes the new
-        Node(Account NewAccount){
-          this->Info = NewAccount;
-          Next = NULL;
-        }
-
+        // Node(Account NewAccount){
+        //   Info = NewAccount;
+        //   Next = NULL;
+        // }
     };
 
     // Allocates the headptr and points it to null as its initial state
@@ -30,4 +29,4 @@ class Machine {
     }
 
 
-}
+};
