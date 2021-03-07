@@ -45,7 +45,7 @@ void Start(Machine ATM){
   cout << "#                                                                                                             # \n";
   cout << "#         Made by: Sean Christian Lozana                                                                      # \n";
   cout << "#         [1] Create Account                                                                                  # \n";
-  cout << "#         [2] Show All Accounts                                                                                         # \n";
+  cout << "#         [2] Login                                                                               # \n";
   cout << "#                                                                                                             # \n";
   cout << "#=============================================================================================================# \n";
   cout << "[CHOICE] => ";cin >> Choice;
@@ -58,17 +58,35 @@ void Start(Machine ATM){
       cout<<"Enter Name: ";cin>>Name;cout<<"\n";
       cout<<"Enter Initial Deposit: ";cin>>Balance;cout<<"\n";
       ATM.CreateAccount(Name, Pin, Balance);
-      Start(ATM);
+      Start(ATM); //Recurses back to the Menu
       break;
     }
     case 2: {
-      ATM.ShowAllAccounts();
+      int Pin;
+      char Choice;
+      cout<<"Enter PIN to Login: ";cin>>Pin;
+      ATM.Login(Pin);
+      cout<<"Would you like to go back to the Menu? Y/N \n CHOICE: ";cin>>Choice;
+      switch(Choice){
+        case 'Y': {
+          clear();
+          Start(ATM);
+        }
+        case 'N': {
+          clear();
+          cout<<"Bye!";
+          return;
+        }
+        default:
+          cout<<"Wrong house fool!";
+      }
       break;
     }
     default:
       clear();
       cout << "Wrong input! \n";
       cin.get();
+      Start(ATM); // Recurses back to the Menu
       break;
   }
 }
