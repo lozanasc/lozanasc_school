@@ -26,71 +26,86 @@ using std::cout;
 using std::cin;
 using std::string;
 
-
-// TODO:
-// Create a Menu Interface
+/*
+  The Start function contains the main interface of the Program
+  @params {class} ATM will be the List for storing and creating Accounts
+*/
 void Start(Machine ATM){
-  bool InUse = true;
-  int Choice;
-  cout << "#=============================================================================================================# \n";
-  cout << "#                                                                                                             # \n";
-  cout << "#                                                                                                             # \n";
-  cout << "#        █████╗ ████████╗███╗   ███╗    ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗          # \n";
-  cout << "#       ██╔══██╗╚══██╔══╝████╗ ████║    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║          # \n";
-  cout << "#       ███████║   ██║   ██╔████╔██║       ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║          # \n";
-  cout << "#       ██╔══██║   ██║   ██║╚██╔╝██║       ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║          # \n";
-  cout << "#       ██║  ██║   ██║   ██║ ╚═╝ ██║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗     # \n";
-  cout << "#       ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝     # \n";
-  cout << "#                                                                                                             # \n";
-  cout << "#                                                                                                             # \n";
-  cout << "#         Made by: Sean Christian Lozana                                                                      # \n";
-  cout << "#         [1] Create Account                                                                                  # \n";
-  cout << "#         [2] Login                                                                                           # \n";
-  cout << "#         [3] Exit                                                                                            # \n";
-  cout << "#                                                                                                             # \n";
-  cout << "#=============================================================================================================# \n";
-  cout << "[CHOICE] => ";cin >> Choice;
-  switch(Choice){
-    case 1: {
-      int Pin;
-      string Name;
-      double Balance;
-      cout<<"Enter PIN: ";cin>>Pin;cout<<"\n";
-      cout<<"Enter Name: ";cin>>Name;cout<<"\n";
-      cout<<"Enter Initial Deposit: ";cin>>Balance;cout<<"\n";
-      ATM.CreateAccount(Name, Pin, Balance);
-      Start(ATM); //Recurses back to the Menu
-      break;
-    }
-    case 2: {
-      int Pin;
-      char Choice;
-      cout<<"Enter PIN to Login: ";cin>>Pin;
-      clear();
-      ATM.Login(Pin);
-      cout<<"Would you like to go back to the Menu? Y/N \n CHOICE: ";cin>>Choice;
-      switch(Choice){
-        case 'Y': {
+  bool UseSession = true;
+  // Persists the Use session
+  while(UseSession){
+    int Choice;
+    cout << "#=============================================================================================================# \n";
+    cout << "#                                                                                                             # \n";
+    cout << "#                                                                                                             # \n";
+    cout << "#        █████╗ ████████╗███╗   ███╗    ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗          # \n";
+    cout << "#       ██╔══██╗╚══██╔══╝████╗ ████║    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║          # \n";
+    cout << "#       ███████║   ██║   ██╔████╔██║       ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║          # \n";
+    cout << "#       ██╔══██║   ██║   ██║╚██╔╝██║       ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║          # \n";
+    cout << "#       ██║  ██║   ██║   ██║ ╚═╝ ██║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗     # \n";
+    cout << "#       ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝     # \n";
+    cout << "#                                                                                                             # \n";
+    cout << "#                                                                                                             # \n";
+    cout << "#         Made by: Sean Christian Lozana                                                                      # \n";
+    cout << "#         [1] Create Account                                                                                  # \n";
+    cout << "#         [2] Log-in                                                                                           # \n";
+    cout << "#         [3] Exit                                                                                            # \n";
+    cout << "#                                                                                                             # \n";
+    cout << "#=============================================================================================================# \n";
+    cout << "[CHOICE] => ";cin >> Choice;
+    switch(Choice){
+      case 1: {
+        clear();
+        int Pin;
+        string Name;
+        double Balance;
+        cout << "#=============================================================================================================# \n";
+        cout << "# Account Registration Form:                                                                                  # \n";
+        cout << "#=============================================================================================================# \n";
+        cout<<"  [Enter PIN:] ";cin>>Pin;cout<<"\n";
+        if(ATM.AccountCheck(Pin)){
+          cout<<"  [Enter Name:] ";cin>>Name;cout<<"\n";
+          cout<<"  [Enter Initial Deposit:] ";cin>>Balance;cout<<"\n";
+          ATM.CreateAccount(Name, Pin, Balance);
           clear();
-          Start(ATM);
         }
-        case 'N': {
-          clear();
-          cout<<"Bye!";
+        else {
+          cout<<"Sorry a user has already associated this PIN \n";
+        }
+        break;
+      }
+      case 2: {
+        int Pin;
+        char Choice;
+        cout<<"Enter PIN to Login: ";cin>>Pin;
+        clear();
+        ATM.Login(Pin);
+        cout<<"Would you like to go back to the Menu? Y/N \n CHOICE: ";cin>>Choice;
+        switch(Choice){
+          case 'Y': {
+            clear();
+            break;
+          }
+          case 'N': {
+            clear();
+            cout<<"Bye!";
+            UseSession = false;
+            break;
+          }
+          default:
           return;
         }
-        default:
-          cout<<"Wrong house fool!";
+        break;
       }
-      break;
-    }
-    case 3: {
-      return;
-    }
-    default:
+      case 3: {
+        UseSession = false;
+        break;
+      }
+      default:
       clear();
       cout << "Wrong input! \n";
-      return;
+      break;
+    }
   }
 }
 
