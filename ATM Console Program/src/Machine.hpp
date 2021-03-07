@@ -44,18 +44,18 @@ class Machine {
           return this->Balance;
         }
         // ! Subject for testing
-        // double UpdateBalance(double Amount, char Operator){
-        //   switch (Operator) {
-        //     case '+': {
-        //       return this->Balance + Amount;
-        //     }
-        //     case '-': {
-        //       return this->Balance - Amount;
-        //     }
-        //     default:
-        //       return this->Balance;
-        //   }
-        // }
+        double UpdateBalance(double Amount, char Operator){
+          switch (Operator) {
+            case '+': {
+              return this->Balance += Amount;
+            }
+            case '-': {
+              return this->Balance -= Amount;
+            }
+            default:
+              return this->Balance;
+          }
+        }
     };
 
     // Allocates the headptr and points it to null as its initial state
@@ -72,26 +72,7 @@ class Machine {
       Account* NewAccount = new Account(SetName, SetPin, InitialDeposit);
       Head == NULL ? Head = Last = NewAccount : NewAccount->Next = Head; Head = NewAccount;
     }
-
-    // ! Not needed at the moment...
-    // Iterates through the list and outputs all existing Accounts
-    // void ShowAllAccounts(){
-    //   Account* CurrentAccount = Head;
-    //   if(CurrentAccount == NULL)  {
-    //     std::cout<<"No account is registered \n";
-    //     return;
-    //   }
-    //   while(CurrentAccount != NULL){
-    //     std::cout<<"#=====================================#\n";
-    //     std::cout<<"# User Information:                   #\n";
-    //     std::cout<<"# Pin: "<<CurrentAccount->GetPin()<<"      #\n";
-    //     std::cout<<"# Name: "<<CurrentAccount->GetName()<<"    #\n";
-    //     std::cout<<"# Balance: "<<CurrentAccount->GetBalance()<<" #\n";
-    //     std::cout<<"#=====================================#\n";
-    //     CurrentAccount = CurrentAccount->Next;
-    //   }
-    // };
-
+    
     void Login(int VerifyPin){
       Account* CurrentAccount = Head;
       if(CurrentAccount == NULL){
@@ -116,11 +97,15 @@ class Machine {
             std::cin>>Choice;
             switch(Choice){
               case 1: {
-                // TODO: Create working Deposit functionality
+                double Amount;
+                std::cout<<"Enter amount: ";std::cin>>Amount;
+                CurrentAccount->UpdateBalance(Amount, '+');
                 break;
               }
               case 2: {
-                // TODO: Create working Withdraw functionality
+                double Amount;
+                std::cout<<"Enter amount: ";std::cin>>Amount;
+                CurrentAccount->UpdateBalance(Amount, '-');
                 break;
               }
               case 3: {

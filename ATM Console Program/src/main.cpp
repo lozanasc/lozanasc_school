@@ -45,9 +45,8 @@ void Start(Machine ATM){
   cout << "#                                                                                                             # \n";
   cout << "#         Made by: Sean Christian Lozana                                                                      # \n";
   cout << "#         [1] Create Account                                                                                  # \n";
-  cout << "#         [2] Withdraw                                                                                        # \n";
-  cout << "#         [3] Deposit                                                                                         # \n";
-  cout << "#         [4] Exit                                                                                         # \n";
+  cout << "#         [2] Login                                                                                           # \n";
+  cout << "#         [3] Exit                                                                                            # \n";
   cout << "#                                                                                                             # \n";
   cout << "#=============================================================================================================# \n";
   cout << "[CHOICE] => ";cin >> Choice;
@@ -85,12 +84,13 @@ void Start(Machine ATM){
       }
       break;
     }
+    case 3: {
+      return;
+    }
     default:
       clear();
       cout << "Wrong input! \n";
-      cin.get();
-      Start(ATM); // Recurses back to the Menu
-      break;
+      return;
   }
 }
 
