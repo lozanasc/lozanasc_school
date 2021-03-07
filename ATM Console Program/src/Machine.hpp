@@ -43,6 +43,19 @@ class Machine {
         double GetBalance(){
           return this->Balance;
         }
+        // ! Subject for testing
+        // double UpdateBalance(double Amount, char Operator){
+        //   switch (Operator) {
+        //     case '+': {
+        //       return this->Balance + Amount;
+        //     }
+        //     case '-': {
+        //       return this->Balance - Amount;
+        //     }
+        //     default:
+        //       return this->Balance;
+        //   }
+        // }
     };
 
     // Allocates the headptr and points it to null as its initial state
@@ -59,31 +72,25 @@ class Machine {
       Account* NewAccount = new Account(SetName, SetPin, InitialDeposit);
       Head == NULL ? Head = Last = NewAccount : NewAccount->Next = Head; Head = NewAccount;
     }
+
+    // ! Not needed at the moment...
     // Iterates through the list and outputs all existing Accounts
-    void ShowAllAccounts(){
-      Account* CurrentAccount = Head;
-      if(CurrentAccount == NULL)  {
-        std::cout<<"No account is registered \n";
-        return;
-      }
-      while(CurrentAccount != NULL){
-        std::cout<<"#=====================================#\n";
-        std::cout<<"# User Information:                   #\n";
-        std::cout<<"# Pin: "<<CurrentAccount->GetPin()<<"      #\n";
-        std::cout<<"# Name: "<<CurrentAccount->GetName()<<"    #\n";
-        std::cout<<"# Balance: "<<CurrentAccount->GetBalance()<<" #\n";
-        std::cout<<"#=====================================#\n";
-        CurrentAccount = CurrentAccount->Next;
-      }
-    };
-
-    double Deposit(Account* Account, double Amount){
-      return (Account->GetBalance()+Amount);
-    }
-
-    double Withdraw(Account* Account, double Amount){
-      return (Account->GetBalance()-Amount);
-    }
+    // void ShowAllAccounts(){
+    //   Account* CurrentAccount = Head;
+    //   if(CurrentAccount == NULL)  {
+    //     std::cout<<"No account is registered \n";
+    //     return;
+    //   }
+    //   while(CurrentAccount != NULL){
+    //     std::cout<<"#=====================================#\n";
+    //     std::cout<<"# User Information:                   #\n";
+    //     std::cout<<"# Pin: "<<CurrentAccount->GetPin()<<"      #\n";
+    //     std::cout<<"# Name: "<<CurrentAccount->GetName()<<"    #\n";
+    //     std::cout<<"# Balance: "<<CurrentAccount->GetBalance()<<" #\n";
+    //     std::cout<<"#=====================================#\n";
+    //     CurrentAccount = CurrentAccount->Next;
+    //   }
+    // };
 
     void Login(int VerifyPin){
       Account* CurrentAccount = Head;
@@ -96,41 +103,33 @@ class Machine {
           int Choice;
           bool LoggedIn = true;
           std::cout<<"#=====================================#\n";
+          std::cout<<"# █   █ ██▀ █   ▄▀▀ ▄▀▄ █▄ ▄█ ██▀     #\n";
+          std::cout<<"# ▀▄▀▄▀ █▄▄ █▄▄ ▀▄▄ ▀▄▀ █ ▀ █ █▄▄     #\n";
+          std::cout<<"#=====================================#\n";
           std::cout<<"# User Information:                   #\n";
           std::cout<<"#=====================================#\n";
-          std::cout<<"# Pin: "<<CurrentAccount->GetPin()<<"\n";
-          std::cout<<"# Name: "<<CurrentAccount->GetName()<<"\n";
-          std::cout<<"# Balance: "<<CurrentAccount->GetBalance()<<"\n";
+          std::cout<<"Pin: "<<CurrentAccount->GetPin()<<"    \n";
+          std::cout<<"Name: "<<CurrentAccount->GetName()<<"  \n";
+          std::cout<<"Balance: "<<CurrentAccount->GetBalance()<<"\n";
           while(LoggedIn){
-            std::cout<<"[USER OPTIONS] \n [1][Deposit] \n [2][Withdraw] \n [3] View Balance \n [4][Exit] \n CHOICE: ";
+            std::cout<<"[USER OPTIONS] \n [1][Deposit] \n [2][Withdraw] \n [3][View Balance] \n [4][Exit] \n CHOICE: ";
             std::cin>>Choice;
             switch(Choice){
               case 1: {
-                double Amount;
-                std::cout<<"How much? : ";
-                std::cin>>Amount;
-                if(CurrentAccount->GetBalance() < Amount)
-                  std::cout<<"Not enough money \n";
-                else
-                  (CurrentAccount->GetBalance() + Deposit(CurrentAccount, Amount));
-                  break;
+                // TODO: Create working Deposit functionality
+                break;
               }
               case 2: {
-                double Amount;
-                std::cout<<"How much? : ";
-                std::cin>>Amount;
-                if(CurrentAccount->GetBalance() < Amount)
-                  std::cout<<"Not enough money \n";
-                else
-                  (CurrentAccount->GetBalance() + Withdraw(CurrentAccount, Amount));
-                  break;
+                // TODO: Create working Withdraw functionality
+                break;
               }
               case 3: {
                 std::cout<<"Balance: "<<CurrentAccount->GetBalance();
                 break;
               }
               case 4: {
-                LoggedIn = false; // Stops the User Option loop
+                // Stops the User Options loop
+                LoggedIn = false;
               }
               default:
                 break;

@@ -45,7 +45,9 @@ void Start(Machine ATM){
   cout << "#                                                                                                             # \n";
   cout << "#         Made by: Sean Christian Lozana                                                                      # \n";
   cout << "#         [1] Create Account                                                                                  # \n";
-  cout << "#         [2] Login                                                                               # \n";
+  cout << "#         [2] Withdraw                                                                                        # \n";
+  cout << "#         [3] Deposit                                                                                         # \n";
+  cout << "#         [4] Exit                                                                                         # \n";
   cout << "#                                                                                                             # \n";
   cout << "#=============================================================================================================# \n";
   cout << "[CHOICE] => ";cin >> Choice;
@@ -65,6 +67,7 @@ void Start(Machine ATM){
       int Pin;
       char Choice;
       cout<<"Enter PIN to Login: ";cin>>Pin;
+      clear();
       ATM.Login(Pin);
       cout<<"Would you like to go back to the Menu? Y/N \n CHOICE: ";cin>>Choice;
       switch(Choice){
