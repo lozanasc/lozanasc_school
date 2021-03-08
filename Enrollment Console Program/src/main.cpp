@@ -30,7 +30,76 @@ using std::string;
 void Start(Enrollment Student, Admin Faculty){
   bool Session = true;
   while(Session){
-
+    int Choice;
+    cout<<"#================================================================#\n";
+    cout<<"#        Negros Oriental State University Enrollment System      #\n";
+    cout<<"#        [1] Enroll                                              #\n";
+    cout<<"#        [2] Admin Login                                         #\n";
+    cout<<"#        [3] Exit                                                #\n";
+    cout<<"#================================================================#\n";
+    cout<<"[CHOICE:]";cin>>Choice;
+    switch (Choice) {
+      case 1: {
+        clear();
+        int Id;
+        string Fname, Lname;
+        cout<<"#================================================================#\n";
+        cout<<"#                      Enrollment Form                           #\n";
+        cout<<"#================================================================#\n";
+        cout<<"Enter Enrollment Id: ";cin>>Id;
+        cout<<"Enter First name: ";cin>>Fname;
+        cout<<"Enter Last name: ";cin>>Lname;
+        Student.EnrollNewStudent(Id, Fname, Lname);
+        break;
+      }
+      case 2:{
+        clear();
+        int Choice;
+        cout<<"#================================================================#\n";
+        cout<<"#        Negros Oriental State University Enrollment System      #\n";
+        cout<<"#        [1] Admin Login                                         #\n";
+        cout<<"#        [2] Admin Registration                                  #\n";
+        cout<<"#        [3] Exit                                                #\n";
+        cout<<"#================================================================#\n";
+        cout<<"[CHOICE:]";cin>>Choice;
+        switch(Choice){
+          case 1: {
+            cout<<"#================================================================#\n";
+            cout<<"#                         Admin Sign-on                          #\n";
+            cout<<"#================================================================#\n";
+            string Username, Password;
+            cout<<"Username: ";cin>>Username;
+            cout<<"Password: ";cin>>Password;
+            clear();
+            Faculty.Login(Username, Password);
+            break;
+          }
+          case 2: {
+            cout<<"#================================================================#\n";
+            cout<<"#                         Registration                           #\n";
+            cout<<"#================================================================#\n";
+            string Username, Password;
+            cout<<"Username: ";cin>>Username;
+            cout<<"Password: ";cin>>Password;
+            Faculty.CreateAccount(Username, Password);
+            break;
+          }
+          case 3: {
+            break;
+          }
+          default:
+            break;
+        }
+        break;
+      }
+      case 3:{
+        Session = false;
+        break;
+      }
+      default:
+        Session = false;
+        break;
+    }
   }
 }
 

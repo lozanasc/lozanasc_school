@@ -1,5 +1,6 @@
 /*
   Made by: Sean Christian Lozana
+  Used to create
 */
 
 // Dependency Imports
@@ -44,6 +45,19 @@ public:
     // Comment this
     Head == NULL ? Head = NewSubject : NewSubject->Next = Head; Head = NewSubject;
   }
+
+  void ShowSubjectList(){
+    Subject* CurrentSubject = Head;
+    if(CurrentSubject == NULL)
+      std::cout<<"No subject in the List\n";
+    while(CurrentSubject!=NULL){
+      std::cout<<"Subject Information: \n";
+      std::cout<<"Subject Id: "<<CurrentSubject->GetSubjectId()<<"\n";
+      std::cout<<"Subject Name: "<<CurrentSubject->GetSubjectName()<<"\n";
+      CurrentSubject = CurrentSubject->Next;
+    }
+  }
+
   // Comment this
   void DeleteSubject(int SubjectId){
     // Comment this

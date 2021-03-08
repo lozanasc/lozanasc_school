@@ -1,6 +1,6 @@
 /*
   Made by: Sean Christian Lozana
-  Linked List that will create, store, retrieve Course
+  Linked List that will create, store, retrieve Courses and related Subjects
 */
 // Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
 #pragma once
@@ -77,6 +77,8 @@ class Registrar {
       std::cout<<"#========================#\n";
       std::cout<<"Course List: \n";
       std::cout<<CurrentCourse->GetCourseName()<<"\n";
+      std::cout<<"Subjects to take: \n";
+      CurrentCourse->GetSubjects().ShowSubjectList();
       std::cout<<"#========================#\n";
     }
   }

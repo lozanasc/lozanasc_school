@@ -7,17 +7,18 @@
 // Dependency Imports
 #include <iostream>
 #include "Registrar.hpp"
+#include "SubjectList.hpp"
 
 // Comment this
 class Enrollment {
 public:
   // Comment this
-  class Enroll{
+  class Enrollee{
     int EnrollmentId;
     string FirstName, LastName;
   public:
-    Enroll* Next;
-    Enroll(int Id, string Fname, string Lname){
+    Enrollee* Next;
+    Enrollee(int Id, string Fname, string Lname){
       this->EnrollmentId = Id;
       this->FirstName = Fname;
       this->LastName = Lname;
@@ -30,4 +31,10 @@ public:
     }
   };
 
+  Enrollee* Head = NULL;
+
+  void EnrollNewStudent(int Id, string Fname, string Lname){
+    Enrollee* NewStudent = new Enrollee(Id, Fname, Lname);
+    Head == NULL ? Head = NewStudent : NewStudent->Next = Head; Head = NewStudent;
+  }
 };
