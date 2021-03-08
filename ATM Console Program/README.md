@@ -6,12 +6,12 @@
 A Terminal-based Automated Teller Machine program which lets your store and create Account information, Log-in to the account and do basic features an ATM have.
 
 ## About the Program
-As mentioned earlier, this program allows you to create and store it, you can also do the following:
+As mentioned earlier, this program allows you to create an account and store it, you can also do the basic features an ATM should have like the ff:
 * Deposit
 * Withdraw
 * Login
 
-This program is best for beginners who are trying to learn Linked Lists and OOP and how it can be used for real-life solutions like an ATM.
+This program is best for beginners who are trying to learn Data Structures particularly Linked Lists and OOP and how it can be used for real-life solutions like an ATM.
 
 ### Built with
 This terminal-based program is built with C++
