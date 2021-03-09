@@ -1,7 +1,10 @@
 /*
   Made by: Sean Christian Lozana
-  Used to create
+
 */
+
+// Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
+#pragma once
 
 // Dependency Imports
 #include <iostream>

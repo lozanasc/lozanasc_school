@@ -16,6 +16,7 @@ public:
   class Enrollee{
     int EnrollmentId;
     string FirstName, LastName;
+    SubjectList SubjectLoad;
   public:
     Enrollee* Next;
     Enrollee(int Id, string Fname, string Lname){
@@ -37,4 +38,10 @@ public:
     Enrollee* NewStudent = new Enrollee(Id, Fname, Lname);
     Head == NULL ? Head = NewStudent : NewStudent->Next = Head; Head = NewStudent;
   }
+
+  // void AddSubject(string SubjectName){
+  //
+  // }
+
+
 };
