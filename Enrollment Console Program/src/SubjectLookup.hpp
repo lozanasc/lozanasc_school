@@ -3,9 +3,6 @@
 
 */
 
-// Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
-#pragma once
-
 // Dependency Imports
 #include <iostream>
 
@@ -18,14 +15,24 @@ public:
     // Comment this
   int SubjectId;
     // Comment this
-  string SubjectName;
+  string SubjectName, AssociatedCourse;
+  bool IsMajor;
     // Comment this
   public:
     Subject* Next;
     // Comment this
-    Subject(int SubjectId, string SubjectName){
+    Subject(int SubjectId, string SubjectName, bool Major){
       this->SubjectId = SubjectId;
       this->SubjectName = SubjectName;
+      this->IsMajor = Major;
+    }
+    // Comment this
+    void SetAssociatedCourse(string CourseName){
+      this->AssociatedCourse = CourseName;
+    }
+    // Comment this
+    string GetAssociatedCourse(){
+      return this->AssociatedCourse;
     }
 
     // Comment this

@@ -4,25 +4,19 @@
 
 // Dependency Imports
 #include <iostream>
-#include "Registrar.hpp"
-#include "SubjectLookup.hpp"
-
-// Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
-#pragma once
 
 // Comment this
 class Admin {
 public:
   class User {
     string Name, Password;
-    Registrar CourseList;
+
   public:
     User* Next;
     // Comment this
-    User(string Name, string Password, Registrar UserCourseList){
+    User(string Name, string Password){
       this->Name = Name;
       this->Password = Password;
-      this->CourseList = UserCourseList;
     }
     // Comment this
     string GetName(){
@@ -32,15 +26,9 @@ public:
     string GetPassword(){
       return this->Password;
     }
-    // Comment this
-    Registrar GetRegistrar(){
-      return this->CourseList;
-    }
   };
   // Comment this
-  SubjectLookup CourseSubjectList;
-  // Comment this
-  class User* Head = NULL;
+  User* Head = NULL;
   // Comment this
   void CreateAccount(string Username, string Password, Registrar UserCourseList){
     // Comment this

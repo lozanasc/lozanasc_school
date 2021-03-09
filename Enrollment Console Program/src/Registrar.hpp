@@ -1,7 +1,6 @@
 /*
   Made by: Sean Christian Lozana
   Linked List that will create, store, retrieve Courses and related Subjects
-  Personally I think Tree or a Hashmap is a much better Data Structure to use for this particular problem
 */
 
 // Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
@@ -9,7 +8,6 @@
 
 // Dependency Imports
 #include <iostream>
-#include "SubjectLookup.hpp"
 
 // Comment this
 class Registrar {
@@ -17,15 +15,12 @@ class Registrar {
   class Course {
     int CourseId;
     string CourseName;
-    // Comment this
-    SubjectLookup Subjects;
   public:
     Course* Next;
     // Constructor
-    Course(int CourseId, string CourseName, SubjectLookup CourseSubjects){
+    Course(int CourseId, string CourseName){
       this->CourseId = CourseId;
       this->CourseName = CourseName;
-      this->Subjects = CourseSubjects;
     }
     // Comment this
     int GetCourseID(){
@@ -36,39 +31,47 @@ class Registrar {
       return this->CourseName;
     }
 
-    // Comment this
-    SubjectLookup GetSubjects(){
-      return this->Subjects;
-    }
   };
   // Initializes the Head pointer, pointing to null
   Course* Head = NULL;
 
   // Comment this
-  void CreateCourse(int CourseId, string CourseName, SubjectLookup CourseSubjects){
+  void CreateCourse(int CourseId, string CourseName){
     // Comment this
-    Course* NewCourse = new Course(CourseId, CourseName, CourseSubjects);
+    Course* NewCourse = new Course(CourseId, CourseName);
     // Comment this
     Head == NULL ? Head = NewCourse : NewCourse->Next = Head; Head = NewCourse;
   }
 
   // Comment this
-  void InsertSubject(int CourseId, int SubjectId, string SubjectName){
-    // Comment this
-    Course* SubjectCourse = Head;
-    // Comment this
-    while(SubjectCourse != NULL){
-      // Comment this
-      if(SubjectCourse->GetCourseID() == CourseId){
-        // Comment this
-        SubjectCourse->GetSubjects().NewSubject(SubjectId, SubjectName);
-      }
-      SubjectCourse = SubjectCourse->Next;
+  void DeleteCourse(int CourseId){
+    Course* CurrenctCourse = Head;
+    Course* PrevCoursePointer = NULL;
+    if(CurrentCourse == NULL){
+      std::cout<<"There's nothing to delete Registrar is empty!\n";
+      return;
     }
-  }
+    else {
+      while(CurrentCourse!=NULL && CurrentCourse->GetCourseID() != CourseId){
+        // Comment this
+        PrevCoursePointer = CurrenctCourse;
+        // Comment this
+        CurrentCourse = CurrenctCourse->Next;
+      }
+      // Comment this
+      if(CurrentCourse == NULL)
+        std::cout<<"There's nothing to delete Registrar is empty!\n";
+      // Comment this
+      PrevCoursePointer->Next = CurrentCourse->Next;
+      // Comment this
+      delete CurrentCourse;
+    }
 
+  }
   // Comment this
   void CourseAvailable(){
+    // Comment this
+    int CourseCount = 0;
     Course* CurrentCourse = Head;
     // Comment this
     if(CurrentCourse == NULL){
@@ -76,14 +79,13 @@ class Registrar {
     }
     // Comment this
     while(CurrentCourse != NULL){
-      std::cout<<"#========================#\n";
-      std::cout<<"Course List: \n";
-      std::cout<<CurrentCourse->GetCourseName()<<"\n";
-      std::cout<<"Subjects to take: \n";
-      CurrentCourse->GetSubjects().ShowSubjectList();
-      std::cout<<"#========================#\n";
+      std::cout<<"#=======================================#\n";
+      std::cout<<"#            Courses Offered:           #\n";
+      std::cout<<"#=======================================#\n";
+      std::cout<<"["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n";
+      std::cout<<"#=======================================#\n";
       CurrentCourse = CurrentCourse->Next;
+      CourseCount++;
     }
   }
-
 };
