@@ -3,8 +3,8 @@
 */
 // Dependency Imports
 #include <iostream>
-#include "Admin.hpp" // Manages the Courses and Subjects per each Course
 
+#include "Admin.hpp" // Manages basically everything at this point...
 
 using std::cout;
 using std::cin;
@@ -31,9 +31,7 @@ using std::cin;
   Read here why:
   https://www.tutorialspoint.com/why-are-global-variables-bad-in-c-cplusplus
 */
-Enrollment Student;
 Admin Faculty;
-Registrar Norsu;
 
 // Comment this
 void Start(){
