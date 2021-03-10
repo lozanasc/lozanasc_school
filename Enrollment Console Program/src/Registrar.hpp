@@ -4,10 +4,12 @@
 */
 
 // Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
-#pragma once
+// #pragma once
 
 // Dependency Imports
 #include <iostream>
+
+using std::string;
 
 // Comment this
 class Registrar {
@@ -21,6 +23,7 @@ class Registrar {
     Course(int CourseId, string CourseName){
       this->CourseId = CourseId;
       this->CourseName = CourseName;
+      Next = NULL;
     }
     // Comment this
     int GetCourseID(){
@@ -45,7 +48,7 @@ class Registrar {
 
   // Comment this
   void DeleteCourse(int CourseId){
-    Course* CurrenctCourse = Head;
+    Course* CurrentCourse = Head;
     Course* PrevCoursePointer = NULL;
     if(CurrentCourse == NULL){
       std::cout<<"There's nothing to delete Registrar is empty!\n";
@@ -54,9 +57,9 @@ class Registrar {
     else {
       while(CurrentCourse!=NULL && CurrentCourse->GetCourseID() != CourseId){
         // Comment this
-        PrevCoursePointer = CurrenctCourse;
+        PrevCoursePointer = CurrentCourse;
         // Comment this
-        CurrentCourse = CurrenctCourse->Next;
+        CurrentCourse = CurrentCourse->Next;
       }
       // Comment this
       if(CurrentCourse == NULL)

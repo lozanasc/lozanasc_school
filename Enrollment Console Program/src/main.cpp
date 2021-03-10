@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Enrollment.hpp" // Creates, Retrieve and Store Student Information
 #include "Admin.hpp" // Manages the Courses and Subjects per each Course
-#include "Registrar.hpp"
+
 
 using std::cout;
 using std::cin;
@@ -36,6 +36,8 @@ Enrollment Student;
 Admin Faculty;
 Registrar Norsu;
 
+void AdminInterface(Admin Faculty);
+
 // Comment this
 void Start(){
   bool Session = true;
@@ -58,8 +60,7 @@ void Start(){
       }
       // Comment this
       case 2:{
-        clear();
-
+        AdminInterface(Faculty);
         break;
       }
       // Comment this
@@ -72,6 +73,13 @@ void Start(){
         break;
     }
   }
+}
+
+
+// Main driver function
+int main(){
+  Start();
+  return 0;
 }
 
 void AdminInterface(Admin Faculty){
@@ -85,7 +93,7 @@ void AdminInterface(Admin Faculty){
     cout<<"#        [2] Register                                            #\n";
     cout<<"#        [3] Exit                                                #\n";
     cout<<"#================================================================#\n";
-    cout<<"[CHOICE:]";cin>>Choice;
+    cout<<"[CHOICE: ] ";cin>>Choice;
     switch (Choice) {
       case 1: {
         clear();
@@ -93,7 +101,9 @@ void AdminInterface(Admin Faculty){
         cout<<"#================================================================#\n";
         cout<<"#                         Admin Sign-on                          #\n";
         cout<<"#================================================================#\n";
-        cout<<""
+        cout<<"[Enter username: ] ";cin>>Username;
+        cout<<"[Enter password: ] ";cin>>Password;
+        Faculty.Login(Username, Password);
         break;
       }
       // Comment this
@@ -103,18 +113,12 @@ void AdminInterface(Admin Faculty){
       }
       // Comment this
       case 3:{
-        return;
+        AdminSession = false;
         break;
       }
       default:
-        AdminSession = false;
-        break;
+      AdminSession = false;
+      break;
     }
   }
-}
-
-// Main driver function
-int main(){
-  Start();
-  return 0;
 }

@@ -25,6 +25,7 @@ public:
       this->SubjectId = SubjectId;
       this->SubjectName = SubjectName;
       this->IsMajor = Major;
+      Next = NULL;
     }
     // Comment this
     void SetAssociatedCourse(string CourseName){
@@ -34,6 +35,8 @@ public:
     string GetAssociatedCourse(){
       return this->AssociatedCourse;
     }
+
+    bool
 
     // Comment this
     int GetSubjectId(){
