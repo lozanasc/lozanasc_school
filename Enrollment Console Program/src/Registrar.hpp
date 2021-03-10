@@ -71,8 +71,22 @@ class Registrar {
     }
 
   }
+  bool CheckCourseAvailability(string CourseName){
+    Course* CurrentCourse = Head;
+    if(CurrentCourse == NULL)
+      return false;
+    else {
+      while(CurrentCourse!=NULL){
+        if(CurrentCourse->GetCourseName() == CourseName)
+        return true;
+        else
+        return false;
+      }
+    }
+    return false;
+  }
   // Comment this
-  void CourseAvailable(){
+  void GetCourseList(){
     // Comment this
     int CourseCount = 0;
     Course* CurrentCourse = Head;
@@ -80,15 +94,17 @@ class Registrar {
     if(CurrentCourse == NULL){
       std::cout<<"No course is available at the moment\n";
     }
-    // Comment this
-    while(CurrentCourse != NULL){
+    else {
+      // Comment this
       std::cout<<"#=======================================#\n";
       std::cout<<"#            Courses Offered:           #\n";
       std::cout<<"#=======================================#\n";
-      std::cout<<"["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n";
+      while(CurrentCourse != NULL){
+        std::cout<<"["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n";
+        CurrentCourse = CurrentCourse->Next;
+        CourseCount++;
+      }
       std::cout<<"#=======================================#\n";
-      CurrentCourse = CurrentCourse->Next;
-      CourseCount++;
     }
   }
 };

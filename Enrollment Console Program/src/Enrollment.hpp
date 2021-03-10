@@ -7,6 +7,8 @@
 // Dependency Imports
 #include <iostream>
 
+#pragma once
+
 using std::string;
 
 // Comment this
@@ -15,14 +17,16 @@ public:
   // Comment this
   class Enrollee{
     int EnrollmentId;
-    string FirstName, LastName, Course;
+    string FirstName, LastName, Username, Password, Course;
   public:
     Enrollee* Next;
     // Comment this
-    Enrollee(int Id, string Fname, string Lname, string Course){
+    Enrollee(int Id, string Fname, string Lname, string Username, string Password, string Course){
       this->EnrollmentId = Id;
       this->FirstName = Fname;
       this->LastName = Lname;
+      this->Username = Username;
+      this->Password = Password;
       this->Course = Course;
       Next = NULL;
     }
@@ -34,7 +38,12 @@ public:
     string GetFullname(){
       return this->FirstName + " " + this->LastName;
     }
-
+    string GetUsername(){
+      return this->Username;
+    }
+    string GetPassword(){
+      return this->Password;
+    }
     string GetCourse(){
       return this->Course;
     }
@@ -45,9 +54,27 @@ public:
   Enrollee* Head = NULL;
 
   // Comment this
-  void EnrollNewStudent(int Id, string Fname, string Lname, string Course){
-    Enrollee* NewStudent = new Enrollee(Id, Fname, Lname, Course);
+  void EnrollNewStudent(int Id, string Fname, string Lname, string Username, string Password, string Course){
+    Enrollee* NewStudent = new Enrollee(Id, Fname, Lname, Username, Password, Course);
     Head == NULL ? Head = NewStudent : NewStudent->Next = Head; Head = NewStudent;
+  }
+
+  void GetEnrolleeList(){
+    Enrollee* CurrentEnrollee = Head;
+
+    if(CurrentEnrollee == NULL)
+      std::cout<<"List is Empty :C \n";
+    else {
+      std::cout<<"#=======================================#\n";
+      std::cout<<"#            Enrollee List              #\n";
+      std::cout<<"#=======================================#\n";
+      while(CurrentEnrollee != NULL){
+        std::cout<<" "<<CurrentEnrollee->GetFullname()<<"\n";
+        CurrentEnrollee = CurrentEnrollee->Next;
+      }
+      std::cout<<"#=======================================#\n";
+    }
+
   }
 
 };

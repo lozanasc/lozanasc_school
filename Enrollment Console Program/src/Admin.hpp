@@ -5,7 +5,7 @@
 // Dependency Imports
 #include <iostream>
 #include "Registrar.hpp"
-
+#include "Enrollment.hpp"
 // Comment this
 class Admin {
 public:
@@ -28,8 +28,11 @@ public:
       return this->Password;
     }
   };
+
   // Comment this
   Registrar CourseList;
+  Enrollment Enroll;
+
   User* Head = NULL;
   // Comment this
   void CreateAccount(string Username, string Password){
@@ -74,17 +77,51 @@ public:
         std::cout<<"#=======================================#\n";
         std::cout<<"[1] Course Options\n";
         std::cout<<"[2] Subjects Options \n";
-        std::cout<<"[3] Show Course List\n";
+        std::cout<<"[3] Show Enrollee List\n";
         std::cout<<"[4] End Session\n";
         std::cout<<"[CHOICE:] ";std::cin>>Choice;
         switch(Choice){
           case 1: {
+            bool CourseSession = true;
+            while(CourseSession){
+              int Choice;
+              std::cout<<"#================================================================#\n";
+              std::cout<<"#                        Course Options                          #\n";
+              std::cout<<"#================================================================#\n";
+              std::cout<<"#        [1] Add new Course                                      #\n";
+              std::cout<<"#        [2] Show all Courses                                    #\n";
+              std::cout<<"#        [3] Exit                                                #\n";
+              std::cout<<"#================================================================#\n";
+              std::cout<<"[CHOICE: ] ";std::cin>>Choice;
+              switch (Choice) {
+                case 1:{
+                  int CourseId;
+                  string CourseName;
+                  std::cout<<"[Enter Course Id: ] ";std::cin>>CourseId;
+                  std::cout<<"[Enter Course Name: ] ";std::cin>>CourseName;
+                  CourseList.CreateCourse(CourseId, CourseName);
+                  break;
+                }
+                case 2:{
+                  CourseList.GetCourseList();
+                  break;
+                }
+                case 3: {
+                  CourseSession = false;
+                  break;
+                }
+                default:
+                  CourseSession = false;
+                  break;
+              }
+            }
             break;
           }
           case 2: {
             break;
           }
           case 3: {
+            Enroll.GetEnrolleeList();
             break;
           }
           case 4: {
@@ -100,4 +137,18 @@ public:
       AccountToVerify = AccountToVerify->Next;
     }
   }
+    // Dog water code
+    bool CheckCourseAvailability(string CourseName){
+      return CourseList.CheckCourseAvailability(CourseName);
+    }
+    void ShowCourseList(){
+      CourseList.GetCourseList();
+    }
+    void EnrollmentForm(int Id, string Fname, string Lname, string Username, string Password, string Course){
+      if(CheckCourseAvailability(Course))
+        Enroll.EnrollNewStudent(Id, Fname, Lname, Username, Password, Course);
+      else
+        std::cout<<"Sorry course not yet available :C \n";
+
+    }
 };
