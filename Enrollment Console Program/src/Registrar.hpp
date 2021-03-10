@@ -8,6 +8,7 @@
 
 // Dependency Imports
 #include <iostream>
+#include "SubjectLookup.hpp"
 
 using std::string;
 
@@ -35,6 +36,9 @@ class Registrar {
     }
 
   };
+
+  //
+  SubjectLookup SubjectList;
   // Initializes the Head pointer, pointing to null
   Course* Head = NULL;
 
@@ -73,17 +77,18 @@ class Registrar {
   }
   bool CheckCourseAvailability(string CourseName){
     Course* CurrentCourse = Head;
+    // Initial State
+    bool IsFound = false;
     if(CurrentCourse == NULL)
-      return false;
+      IsFound = false;
     else {
       while(CurrentCourse!=NULL){
         if(CurrentCourse->GetCourseName() == CourseName)
-        return true;
-        else
-        return false;
+          IsFound = true;
+        CurrentCourse = CurrentCourse->Next;
       }
     }
-    return false;
+    return IsFound;
   }
   // Comment this
   void GetCourseList(){

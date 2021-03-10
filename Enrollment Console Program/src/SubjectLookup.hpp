@@ -3,6 +3,8 @@
 
 */
 
+#pragma once
+
 // Dependency Imports
 #include <iostream>
 

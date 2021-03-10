@@ -69,7 +69,10 @@ public:
       std::cout<<"#            Enrollee List              #\n";
       std::cout<<"#=======================================#\n";
       while(CurrentEnrollee != NULL){
-        std::cout<<" "<<CurrentEnrollee->GetFullname()<<"\n";
+        std::cout<<"#=======================================#\n";
+        std::cout<<"Name: "<<CurrentEnrollee->GetFullname()<<"\n";
+        std::cout<<"Course: "<<CurrentEnrollee->GetCourse()<<"\n";
+        std::cout<<"#=======================================#\n";
         CurrentEnrollee = CurrentEnrollee->Next;
       }
       std::cout<<"#=======================================#\n";
