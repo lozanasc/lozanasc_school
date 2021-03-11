@@ -5,25 +5,10 @@
 #include <iostream>
 
 #include "Admin.hpp" // Manages basically everything at this point...
+#include "TerminalClear.hpp"
 
 using std::cout;
 using std::cin;
-
-/*
-  Makes sure clearing the terminal on both Linux and Windows works
-  However please do note that the use of system function calls is not recommended
-  Read here:
-  http://www.cplusplus.com/articles/j3wTURfi/
-*/
-#ifdef __linux__
-  void clear(){
-    system("clear");
-  }
-#elif _WIN32
-  void clear(){
-    system("cls");
-  }
-#endif
 
 /*
   Global Variables
@@ -37,15 +22,17 @@ Admin Faculty;
 void Start(){
   bool Session = true;
   while(Session){
+    clear();
     int Choice;
     cout<<"#================================================================#\n";
     cout<<"#        Negros Oriental State University Enrollment System      #\n";
     cout<<"#================================================================#\n";
     cout<<"#        [1] Enroll                                              #\n";
     cout<<"#        [2] Admin Options                                       #\n";
-    cout<<"#        [3] Exit                                                #\n";
+    cout<<"#        [3] Check Enrollment Status                             #\n";
+    cout<<"#        [4] Exit                                                #\n";
     cout<<"#================================================================#\n";
-    cout<<"[CHOICE:]";cin>>Choice;
+    cout<<"[CHOICE: ] ";cin>>Choice;
     switch (Choice) {
       // Comment this
       case 1: {
@@ -67,9 +54,9 @@ void Start(){
       }
       // Comment this
       case 2:{
-        clear();
         bool AdminSession = true;
         while(AdminSession){
+          clear();
           int Choice;
           cout<<"#================================================================#\n";
           cout<<"#                         Admin Options                          #\n";
@@ -93,6 +80,7 @@ void Start(){
             }
             // Comment this
             case 2:{
+              clear();
               string Username, Password;
               cout<<"#================================================================#\n";
               cout<<"#                       Admin Registration                       #\n";
@@ -114,8 +102,19 @@ void Start(){
         }
         break;
       }
+      case 3: {
+        clear();
+        string Username, Password;
+        cout<<"#================================================================#\n";
+        cout<<"#                       Enrollee Login                           #\n";
+        cout<<"#================================================================#\n";
+        cout<<"[Enter username: ] ";cin>>Username;
+        cout<<"[Enter password: ] ";cin>>Password;
+        Faculty.EnrolleeLogin(Username, Password);
+        break;
+      }
       // Comment this
-      case 3:{
+      case 4:{
         Session = false;
         break;
       }

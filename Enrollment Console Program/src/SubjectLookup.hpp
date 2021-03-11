@@ -23,10 +23,11 @@ public:
   public:
     Subject* Next;
     // Comment this
-    Subject(int SubjectId, string SubjectName, bool Major){
+    Subject(string Course, int SubjectId, string SubjectName, bool Major){
       this->SubjectId = SubjectId;
       this->SubjectName = SubjectName;
       this->IsMajor = Major;
+      this->AssociatedCourse = Course;
       Next = NULL;
     }
     // Comment this
@@ -38,8 +39,6 @@ public:
       return this->AssociatedCourse;
     }
 
-    bool
-
     // Comment this
     int GetSubjectId(){
       return this->SubjectId;
@@ -48,15 +47,18 @@ public:
     string GetSubjectName(){
       return this->SubjectName;
     }
+    bool GetMajorStatus(){
+      return this->IsMajor;
+    }
   };
 
   // Comment this
   Subject* Head = NULL;
 
   // Comment this
-  void NewSubject(int SubjectId, string SubjectName){
+  void NewSubject(string Course, int SubjectId, string SubjectName, bool IsMajor){
     // Comment this
-    Subject* NewSubject = new Subject(SubjectId, SubjectName);
+    Subject* NewSubject = new Subject(Course, SubjectId, SubjectName, IsMajor);
     // Comment this
     Head == NULL ? Head = NewSubject : NewSubject->Next = Head; Head = NewSubject;
   }

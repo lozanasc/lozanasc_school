@@ -9,6 +9,7 @@
 // Dependency Imports
 #include <iostream>
 #include "SubjectLookup.hpp"
+#include "TerminalClear.hpp"
 
 using std::string;
 
@@ -37,7 +38,7 @@ class Registrar {
 
   };
 
-  //
+  // Comment this
   SubjectLookup SubjectList;
   // Initializes the Head pointer, pointing to null
   Course* Head = NULL;
@@ -67,14 +68,15 @@ class Registrar {
       }
       // Comment this
       if(CurrentCourse == NULL)
-        std::cout<<"There's nothing to delete Registrar is empty!\n";
+        std::cout<<"There's nothing to delete Course not found!\n";
       // Comment this
       PrevCoursePointer->Next = CurrentCourse->Next;
       // Comment this
       delete CurrentCourse;
     }
-
   }
+
+  // Comment this
   bool CheckCourseAvailability(string CourseName){
     Course* CurrentCourse = Head;
     // Initial State
@@ -90,9 +92,9 @@ class Registrar {
     }
     return IsFound;
   }
+
   // Comment this
   void GetCourseList(){
-    // Comment this
     int CourseCount = 0;
     Course* CurrentCourse = Head;
     // Comment this
@@ -105,11 +107,25 @@ class Registrar {
       std::cout<<"#            Courses Offered:           #\n";
       std::cout<<"#=======================================#\n";
       while(CurrentCourse != NULL){
-        std::cout<<"["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n";
+        std::cout<<"#=======================================#\n";
+        std::cout<<"["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n[Course ID: ]"<<CurrentCourse->GetCourseID()<<"\n";
         CurrentCourse = CurrentCourse->Next;
         CourseCount++;
+        std::cout<<"#=======================================#\n";
       }
       std::cout<<"#=======================================#\n";
     }
+    return;
   }
+
+  // Comment this
+  void AddSubject(string Course, int SubjectId, string SubjectName, bool IsMajor){
+    SubjectList.NewSubject(Course, SubjectId, SubjectName, IsMajor);
+  }
+
+  // Comment this
+  void ShowSubjects(){
+    SubjectList.ShowSubjectList();
+  }
+
 };
