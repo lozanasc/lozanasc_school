@@ -179,5 +179,9 @@ public:
     }
 
   }
+  
+   void ChangeEnrollmentStatus(string Username,bool Status){
+     Enrollee* CurrentEnrollee = Head;
+   }
 
 };

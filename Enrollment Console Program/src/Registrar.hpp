@@ -57,7 +57,7 @@ class Registrar {
     Course* CurrentCourse = Head;
     // List is Empty
     if(CurrentCourse == NULL)
-      std::cout<<"There's nothing to delete idiot \n";
+      std::cout<<"There's nothing to delete \n";
 
     while(CurrentCourse != NULL){
       if(CurrentCourse->GetCourseID() == CourseId)
@@ -68,27 +68,28 @@ class Registrar {
 
     return CoursePosition;
   }
+
   // Comment this
   void DeleteCourse(int Position){
-    Course* CurrentCourse = Head;
 
     // List is Empty
-    if (CurrentCourse == NULL)
+    if (Head == NULL)
       return;
 
     // Temp head node
-    Course* PrevCoursePointer = CurrentCourse;
+    Course* PrevCoursePointer = Head;
 
     // If the Course is at the Head node
     if(Position == 0){
-        CurrentCourse = PrevCoursePointer->Next;
+        Head = PrevCoursePointer->Next;
         free(PrevCoursePointer);
         return;
     }
 
     // Loops over the List and finds the previous node of the node to be deleted
-    for (int i=0; PrevCoursePointer != NULL && i < Position - 1; i++)
+    for (int i=0; PrevCoursePointer != NULL && i < Position - 1; i++) {
       PrevCoursePointer = PrevCoursePointer->Next;
+    }
 
     // Checks if the Position does not go out of bounds
     if (PrevCoursePointer == NULL || PrevCoursePointer->Next == NULL)
@@ -96,7 +97,7 @@ class Registrar {
 
     // The Next pointer of PrevCoursePointer is the node to be removed
     // Will store the pointer to the next of node to be deleted
-    Course *Next = PrevCoursePointer->Next->Next;
+    Course* Next = PrevCoursePointer->Next->Next;
 
     // Unlinks the Node from the List
     free(PrevCoursePointer->Next);
@@ -136,7 +137,7 @@ class Registrar {
       std::cout<<"#=======================================#\n";
       while(CurrentCourse != NULL){
         std::cout<<"#=======================================#\n";
-        std::cout<<"["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n[Course ID: ]"<<CurrentCourse->GetCourseID()<<"\n";
+        std::cout<<"Position: ["<<CourseCount<<"] "<<CurrentCourse->GetCourseName()<<"\n[Course ID: ] "<<CurrentCourse->GetCourseID()<<"\n";
         CurrentCourse = CurrentCourse->Next;
         CourseCount++;
         std::cout<<"#=======================================#\n";
@@ -151,9 +152,13 @@ class Registrar {
     SubjectList.NewSubject(Course, SubjectId, SubjectName, IsMajor);
   }
 
+  void DeleteSubject(){
+    SubjectList.DeleteSubject();
+  }
+
   // Comment this
-  void ShowSubjects(){
-    SubjectList.ShowSubjectList();
+  void ShowSubjects(int SubjectId){
+    SubjectList.ShowSubjectList(SubjectList.SearchSubjectByPosition(SubjectId));
   }
 
 };
