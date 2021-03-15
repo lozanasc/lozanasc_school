@@ -26,6 +26,9 @@ public:
     string GetSubjectName(){
       return this->SubjectName;
     }
+    string GetSubjectCourse(){
+      return this->Course;
+    }
   };
   // Comment this
   StudentSubject* Head = NULL;
@@ -38,6 +41,21 @@ public:
     Head == NULL ? Head = NewSubject : NewSubject->Next = Head; Head = NewSubject;
   }
 
+  void ShowAllSubject(){
+    StudentSubject* CurrentSubject = Head;
 
+    if(CurrentSubject == NULL)
+      std::cout<<"There's no subject in the list \n";
+
+      std::cout<<"#================================================================#\n";
+      std::cout<<"#                        Subject List                            #\n";
+      std::cout<<"#================================================================#\n";
+    while (CurrentSubject != NULL) {
+      std::cout<<"  "<<CurrentSubject->GetSubjectName()<<"\n";
+      std::cout<<"  "<<CurrentSubject->GetSubjectCourse()<<"\n";
+      CurrentSubject = CurrentSubject->Next;
+    }
+    std::cout<<"#================================================================#\n";
+  }
 
 };

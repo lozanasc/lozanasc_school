@@ -21,6 +21,9 @@ public:
     string FirstName, LastName, Username, Password, Course;
     bool AcceptanceStatus;
   public:
+
+    SubjectList Subjects;
+
     Enrollee* Next;
     // Comment this
     Enrollee(int Id, string Fname, string Lname, string Username, string Password, string Course, bool AcceptanceStatus) {
@@ -65,13 +68,13 @@ public:
     }
   };
 
-  SubjectList Subjects;
 
   // Comment this
   Enrollee* Head = NULL;
 
   // Comment this
   void EnrollNewStudent(int Id, string Fname, string Lname, string Username, string Password, string Course){
+    SubjectList Subjects;
     Enrollee* NewStudent = new Enrollee(Id, Fname, Lname, Username, Password, Course, false);
     Head == NULL ? Head = NewStudent : NewStudent->Next = Head; Head = NewStudent;
   }
@@ -108,15 +111,23 @@ public:
                 std::cout<<"#        [2] Show all Subjects                                   #\n";
                 std::cout<<"#        [3] Exit                                                #\n";
                 std::cout<<"#================================================================#\n";
+                std::cout<<" [CHOICE: ] ";std::cin>>Choice;
                 switch (Choice) {
                   case 1:{
+                    std::cout<<"#================================================================#\n";
+                    std::cout<<"#                     Adding of Subjects                         #\n";
+                    std::cout<<"#================================================================#\n";
                     int Id;
                     string SubjectName, Course;
-                    Subjects.NewSubject(SubjectName, Course);
+                    std::cout<<"[Enter Subject Id : ]";std::cin>>Id;
+                    std::cout<<"[Enter Subject Name : ]";std::cin>>SubjectName;
+                    std::cout<<"[Enter Subject Course : ]";std::cin>>Course;
+                    CurrentEnrollee->Subjects.NewSubject(Id, SubjectName, Course);
                     break;
                   }
                   case 2: {
-
+                    clear();
+                    CurrentEnrollee->Subjects.ShowAllSubject();
                     break;
                   }
                   case 3: {

@@ -120,7 +120,8 @@ public:
                   std::cout<<"[Course Available: ]\n";
                   CourseList.GetCourseList();
                   std::cout<<"[Enter Course ID: ]";std::cin>>CourseToDelete;
-                  CourseList.DeleteCourse(CourseToDelete);
+                  std::cout<<"Course Position is at Index:  "<<CourseList.SearchByPosition(CourseToDelete)<<"\n";
+                  CourseList.DeleteCourse(CourseList.SearchByPosition(CourseToDelete));
                   break;
                 }
                 default:

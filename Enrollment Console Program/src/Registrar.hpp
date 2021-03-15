@@ -52,28 +52,56 @@ class Registrar {
   }
 
   // Comment this
-  void DeleteCourse(int CourseId){
+  int SearchByPosition(int CourseId){
+    int CoursePosition = 0 ;
     Course* CurrentCourse = Head;
-    Course* PrevCoursePointer = NULL;
-    if(CurrentCourse == NULL){
-      std::cout<<"There's nothing to delete Registrar is empty!\n";
+    // List is Empty
+    if(CurrentCourse == NULL)
+      std::cout<<"There's nothing to delete idiot \n";
+
+    while(CurrentCourse != NULL){
+      if(CurrentCourse->GetCourseID() == CourseId)
+        return CoursePosition;
+      CoursePosition++;
+      CurrentCourse = CurrentCourse->Next;
+    }
+
+    return CoursePosition;
+  }
+  // Comment this
+  void DeleteCourse(int Position){
+    Course* CurrentCourse = Head;
+
+    // List is Empty
+    if (CurrentCourse == NULL)
       return;
+
+    // Temp head node
+    Course* PrevCoursePointer = CurrentCourse;
+
+    // If the Course is at the Head node
+    if(Position == 0){
+        CurrentCourse = PrevCoursePointer->Next;
+        free(PrevCoursePointer);
+        return;
     }
-    else {
-      while(CurrentCourse!=NULL && CurrentCourse->GetCourseID() != CourseId){
-        // Comment this
-        PrevCoursePointer = CurrentCourse;
-        // Comment this
-        CurrentCourse = CurrentCourse->Next;
-      }
-      // Comment this
-      if(CurrentCourse == NULL)
-        std::cout<<"There's nothing to delete Course not found!\n";
-      // Comment this
-      PrevCoursePointer->Next = CurrentCourse->Next;
-      // Comment this
-      delete CurrentCourse;
-    }
+
+    // Loops over the List and finds the previous node of the node to be deleted
+    for (int i=0; PrevCoursePointer != NULL && i < Position - 1; i++)
+      PrevCoursePointer = PrevCoursePointer->Next;
+
+    // Checks if the Position does not go out of bounds
+    if (PrevCoursePointer == NULL || PrevCoursePointer->Next == NULL)
+      return;
+
+    // The Next pointer of PrevCoursePointer is the node to be removed
+    // Will store the pointer to the next of node to be deleted
+    Course *Next = PrevCoursePointer->Next->Next;
+
+    // Unlinks the Node from the List
+    free(PrevCoursePointer->Next);
+
+    PrevCoursePointer->Next = Next;
   }
 
   // Comment this
