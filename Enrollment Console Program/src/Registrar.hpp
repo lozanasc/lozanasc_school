@@ -5,7 +5,6 @@
 
 // Dependency Imports
 #include <iostream>
-#include "SubjectLookup.hpp"
 #include "TerminalClear.hpp"
 
 using std::string;

@@ -97,7 +97,7 @@ public:
         the Current's node Name is the same with the parameter Username.
       */
       if(CurrentAccount->GetName() == Username){
-        isFound = true;
+        IsFound = true;
       }
       // CurrentAccount pointer will point to the memory address of the next node until it reaches NULL
       CurrentAccount = CurrentAccount->Next;
