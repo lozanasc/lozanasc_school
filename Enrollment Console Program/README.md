@@ -1,6 +1,6 @@
 <img src="assets/program-snapshopt-menu.png"/>
 <br/>
-<h3 align="center">
+<h3>
 A Terminal-based Enrollment Console Program
 </h3>
 A Terminal-based Enrollment Program that tries to mimic NORSU's current local Enrollment System.
