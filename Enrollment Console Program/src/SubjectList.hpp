@@ -12,37 +12,45 @@ public:
   public:
     StudentSubject* Next;
     /*
-      Constructor that initializes Enrollee's Id, Name and Course
-
+      Constructor that initializes Subject's Id, Name and Course
+      @params {integer} Id for Identification
+      @params {string} Name for Identification
+      @params {string} Course for Subject's Program
     */
     StudentSubject(int Id, string Name, string Course){
       this->SubjectId = Id;
       this->SubjectName = Name;
       this->Course = Course;
     }
-    // Comment this
+    // Returns Subject's Subject Id
     int GetStudentId(){
       return this->SubjectId;
     }
-    // Comment this
+    // Returns Subject's Subject Name
     string GetSubjectName(){
       return this->SubjectName;
     }
+    // Returns Subject's Course
     string GetSubjectCourse(){
       return this->Course;
     }
   };
-  // Comment this
+  // Initializes the Head node pointer to NULL as its initial state
   StudentSubject* Head = NULL;
 
-  // Comment this
+  /*
+    This function is responsible for Creating and Inserting a new Subject
+    In the SubjectList
+    @params {integer} Id for Identification
+    @params {string} Name for Identification
+    @params {string} Course for Subject's Program
+  */
   void NewSubject(int Id, string Name, string Course){
-    // Comment this
     StudentSubject* NewSubject = new StudentSubject(Id, Name, Course);
-    // Comment this
     Head == NULL ? Head = NewSubject : NewSubject->Next = Head; Head = NewSubject;
   }
 
+  // This function outputs the entire Subject List
   void ShowAllSubject(){
     StudentSubject* CurrentSubject = Head;
 
