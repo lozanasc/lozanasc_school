@@ -3,16 +3,18 @@
 */
 #include <iostream>
 
-// Comment this
+// This class is responsible for storing Subjects for each Enrollee's
 class SubjectList {
 public:
-  // Comment this
   class StudentSubject{
     int SubjectId;
     string SubjectName, Course;
   public:
     StudentSubject* Next;
-    // Comment this
+    /*
+      Constructor that initializes Enrollee's Id, Name and Course
+
+    */
     StudentSubject(int Id, string Name, string Course){
       this->SubjectId = Id;
       this->SubjectName = Name;
@@ -46,16 +48,17 @@ public:
 
     if(CurrentSubject == NULL)
       std::cout<<"There's no subject in the list \n";
-
+    else {
       std::cout<<"#================================================================#\n";
       std::cout<<"#                        Subject List                            #\n";
       std::cout<<"#================================================================#\n";
-    while (CurrentSubject != NULL) {
-      std::cout<<"  "<<CurrentSubject->GetSubjectName()<<"\n";
-      std::cout<<"  "<<CurrentSubject->GetSubjectCourse()<<"\n";
-      CurrentSubject = CurrentSubject->Next;
+      while (CurrentSubject != NULL) {
+        std::cout<<"  "<<CurrentSubject->GetSubjectName()<<"\n";
+        std::cout<<"  "<<CurrentSubject->GetSubjectCourse()<<"\n";
+        CurrentSubject = CurrentSubject->Next;
+      }
+      std::cout<<"#================================================================#\n";
     }
-    std::cout<<"#================================================================#\n";
   }
 
 };

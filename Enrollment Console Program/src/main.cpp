@@ -18,9 +18,14 @@ using std::cin;
 */
 Admin Faculty;
 
-// Comment this
+// Start function that is responsible for housing the entire menu interface program
 void Start(){
+  /* Session condition that will control the main flow of the program
+     true -> Program will continue
+     false -> Program will terminate
+  */
   bool Session = true;
+  // Main loop of the Program
   while(Session){
     clear();
     int Choice;
@@ -34,7 +39,11 @@ void Start(){
     cout<<"#================================================================#\n";
     cout<<"[CHOICE: ] ";cin>>Choice;
     switch (Choice) {
-      // Comment this
+      /*
+        This case contains the Enrollment process which is the main purpose of the program,
+        there is a condition however for a successful enrollment process, the admin should
+        populate the course list inorder for students to be able to enroll.
+      */
       case 1: {
         clear();
         int Id;
@@ -47,13 +56,24 @@ void Start(){
         cout<<"[Enter User name: ] ";cin>>Username;
         cout<<"[Enter Password: ] ";cin>>Password;
         clear();
+        // Shows a list courses available to enroll in
         Faculty.ShowCourseList();
         cout<<"[Enter Course: ] ";cin>>Course;
+        // Adds a new enrollee to the Enrollment list
         Faculty.EnrollmentForm(Id, Fname, Lname, Username, Password, Course);
         break;
       }
-      // Comment this
+      /*
+        This case contains options available for the Admin component which are:
+        * Logging in
+        * Registration
+        * Exit or break out from the sub-loop
+      */
       case 2:{
+        /* Sub-loop that is responsible for the Admin session
+          true -> Admin session loop will continue
+          false -> Admin session breaks out and goes back to the main loop
+        */
         bool AdminSession = true;
         while(AdminSession){
           clear();
@@ -67,6 +87,9 @@ void Start(){
           cout<<"#================================================================#\n";
           cout<<"[CHOICE: ] ";cin>>Choice;
           switch (Choice) {
+            /*
+              This case is responsible for the Admin Login form
+            */
             case 1: {
               clear();
               string Username, Password;
@@ -75,10 +98,16 @@ void Start(){
               cout<<"#================================================================#\n";
               cout<<"[Enter username: ] ";cin>>Username;
               cout<<"[Enter password: ] ";cin>>Password;
+              /*
+                If Login is successful, proceed to Dashboard inside the Login function
+                Else will go back to the admin session loop since Login function will terminate
+              */
               Faculty.Login(Username, Password);
               break;
             }
-            // Comment this
+            /*
+              This case is responsible for the Registration of Admin user agents
+            */
             case 2:{
               clear();
               string Username, Password;
@@ -87,14 +116,16 @@ void Start(){
               cout<<"#================================================================#\n";
               cout<<"[Enter username: ] ";cin>>Username;
               cout<<"[Enter password: ] ";cin>>Password;
+              // Adds a new account to the Admin List
               Faculty.CreateAccount(Username, Password);
               break;
             }
-            // Comment this
+            // Breaks the admin session loop out and goes back to the main session loop
             case 3:{
               AdminSession = false;
               break;
             }
+            // In cases where input is invalid the admin session loop will automatically break
             default:
             AdminSession = false;
             break;
@@ -102,6 +133,9 @@ void Start(){
         }
         break;
       }
+      /*
+        This case contains the Login for Enrollee for authentication
+      */
       case 3: {
         clear();
         string Username, Password;
@@ -110,14 +144,19 @@ void Start(){
         cout<<"#================================================================#\n";
         cout<<"[Enter username: ] ";cin>>Username;
         cout<<"[Enter password: ] ";cin>>Password;
+        /*
+          If Login is successful, proceed to Dashboard inside the Login function
+          Else will go back to the session loop since Login function will terminate
+        */
         Faculty.EnrolleeLogin(Username, Password);
         break;
       }
-      // Comment this
+      // Breaks the Main session loop and terminates the entire program
       case 4:{
         Session = false;
         break;
       }
+      // In cases where input is invalid main session loop will automatically break out of the loop and terminates program
       default:
         Session = false;
         break;
@@ -128,6 +167,8 @@ void Start(){
 
 // Main driver function
 int main(){
+  // Start functional invokation at main function
   Start();
+  // Program termination
   return 0;
 }

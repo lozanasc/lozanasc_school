@@ -3,9 +3,6 @@
   Linked List that will create, store, retrieve Courses and related Subjects
 */
 
-// Read more about this feature -> https://en.wikipedia.org/wiki/Pragma_once
-// #pragma once
-
 // Dependency Imports
 #include <iostream>
 #include "SubjectLookup.hpp"
@@ -13,37 +10,51 @@
 
 using std::string;
 
-// Comment this
+/*
+  This class is responsible for storing Courses
+*/
 class Registrar {
   public:
+  /*
+    This sub-class is responsible for the blueprint of the Course containing
+    CourseId and CourseName for Course Identification
+  */
   class Course {
+
     int CourseId;
     string CourseName;
+
   public:
+
     Course* Next;
-    // Constructor
+    /*
+      Constructor that Initializes the Course
+      @params {integer} CourseId for Identification
+      @params {string} CourseName for Identification
+    */
     Course(int CourseId, string CourseName){
       this->CourseId = CourseId;
       this->CourseName = CourseName;
       Next = NULL;
     }
-    // Comment this
+    // Returns the Course Id
     int GetCourseID(){
       return this->CourseId;
     }
-    // Comment this
+    // Returns the Course name
     string GetCourseName(){
       return this->CourseName;
     }
 
   };
-
-  // Comment this
-  SubjectLookup SubjectList;
   // Initializes the Head pointer, pointing to null
   Course* Head = NULL;
 
-  // Comment this
+  /*
+    Function responsible for Inserting new courses into the List
+    @params CourseId for Identification
+    @params CourseName for Identification
+  */
   void CreateCourse(int CourseId, string CourseName){
     // Comment this
     Course* NewCourse = new Course(CourseId, CourseName);
@@ -51,11 +62,10 @@ class Registrar {
     Head == NULL ? Head = NewCourse : NewCourse->Next = Head; Head = NewCourse;
   }
 
-  // Comment this
+  // Function responsible for returning the index of a Course in the List using the CourseId
   int SearchByPosition(int CourseId){
     int CoursePosition = 0 ;
     Course* CurrentCourse = Head;
-    // List is Empty
     if(CurrentCourse == NULL)
       std::cout<<"There's nothing to delete \n";
 
@@ -69,7 +79,10 @@ class Registrar {
     return CoursePosition;
   }
 
-  // Comment this
+  /*
+    Function responsible for deleting nodes in the List
+    @params {integer} Position for search key
+  */
   void DeleteCourse(int Position){
 
     // List is Empty
@@ -105,7 +118,10 @@ class Registrar {
     PrevCoursePointer->Next = Next;
   }
 
-  // Comment this
+  /*
+    Traverses the entire list to look for matches with CourseName paramter
+    @params {string} CourseName Identifier
+  */
   bool CheckCourseAvailability(string CourseName){
     Course* CurrentCourse = Head;
     // Initial State
@@ -122,7 +138,7 @@ class Registrar {
     return IsFound;
   }
 
-  // Comment this
+  // This function is responsible for outputting all Courses in the List
   void GetCourseList(){
     int CourseCount = 0;
     Course* CurrentCourse = Head;
@@ -145,20 +161,6 @@ class Registrar {
       std::cout<<"#=======================================#\n";
     }
     return;
-  }
-
-  // Comment this
-  void AddSubject(string Course, int SubjectId, string SubjectName, bool IsMajor){
-    SubjectList.NewSubject(Course, SubjectId, SubjectName, IsMajor);
-  }
-
-  void DeleteSubject(){
-    SubjectList.DeleteSubject();
-  }
-
-  // Comment this
-  void ShowSubjects(int SubjectId){
-    SubjectList.ShowSubjectList(SubjectList.SearchSubjectByPosition(SubjectId));
   }
 
 };
