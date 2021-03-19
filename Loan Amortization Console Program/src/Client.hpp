@@ -130,4 +130,13 @@ public:
   }
 
 
+  void AdminLogin(string Username, string Password){
+    // Main admin session loop
+    bool AdminSession = true;
+    while(AdminSession){
+      // Admin stuff here
+    }
+  }
+
+
 };
