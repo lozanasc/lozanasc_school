@@ -118,7 +118,7 @@ public:
   User* Head = NULL;
 
   /*
-    Function that creates and new User object and inserting it into the List
+    Function that creates a new User object and inserting it into the List
     @params {integer} Id for Account Identification
     @params {string} Name Fullname for Account Identification
     @params {string} Username for Account Identification and Authentication
