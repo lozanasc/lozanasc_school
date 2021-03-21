@@ -3,8 +3,8 @@
 */
 
 
-#include<iostream>
-#inlude "Client.hpp"
+#include <iostream>
+#include "Client.hpp"
 
 using std::string;
 
@@ -93,4 +93,37 @@ public:
     Head == NULL ? Head = NewApplication : NewApplication->Next = Head; Head = NewApplication;
   }
 
+  /*
+     Function that handles Login authentication for the Lender
+     @params {string} Name for Identification and Authentication       
+     @params {string} Password for Authentication
+  */
+  void Login(string Name, string Password){
+    Loan* CurrentApplication = Head;
+	
+    if(CurrentApplication == NULL)
+	return;    
+
+    while(CurrentApplication != NULL){
+    	
+	if(CurrentApplication->GetName() == Name && CurrentApplication->GetPassword() == Password){
+	  bool isLoggedIn = true;
+	  while(isLoggedIn){
+	  int Choice;
+	  std::cout<<" Lending Application Console Program \n";
+	  std::cout<<" [1] Approve a Loan Application \n";
+	  switch(Choice){
+	  	case 1:	{
+		// Approval of Application code block goes here
+		break;		
+	  	}
+		default:
+		break;
+	  }
+	}
+
+	CurrentApplication = CurrentApplication->Next;
+    }
+
+  }
 };

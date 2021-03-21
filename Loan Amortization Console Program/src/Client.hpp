@@ -85,7 +85,7 @@ public:
       as a Message
     */
     void GetApprovalStatus(){
-      this->ApprovalStatus ? std::cout<<"Approved" : std::cout<<"Pending" return;
+      this->ApprovalStatus ? std::cout<<"Approved" : std::cout<<"Pending"; return;
     }
 
     // Sets client's installment plan in Months
