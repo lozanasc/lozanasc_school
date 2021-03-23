@@ -120,8 +120,12 @@ public:
         std::cout<<"<=======================================> \n";
     	  switch(Choice){
     	  	case 1:	{
-    		// Approval of Application code block goes here
-  		    break;
+    		  clear();
+          string Username;
+          Applicant.GetClientList();
+          std::cout<<"<Enter Username of Client to Approve> \n: ";std::cin>>Username;
+          Applicant.Approval(Username);
+		      break;
     	  	}
     		default:
     		  break;
