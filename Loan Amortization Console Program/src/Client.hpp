@@ -1,8 +1,34 @@
 /*
   Made by Sean Christian Lozana
+
+  Complete this Project today:
+  4-Session Pomodoro
+  [X] Session 1
+    [] Break 1
+  [] Session 2
+    [] Break 2
+  [] Session 3
+    [] Break 3
+  [] Session 4
+    [] Break 4
+
+  Client should be able to do the ff:
+
+  - Client should be able to loan an amount of no less than 3,000 PHP
+  - Client should be able to choose how many months client is willing to pay
+
+  Client Information should contain the ff:
+    - Name
+    - Amount Loaned
+    - Principal with Interest
+    - Monthly Payment
+    - Approval Status
+    - Loan Type
 */
 
+// Dependency Imports
 #include <iostream>
+#include "Clear.hpp"
 
 using std::string;
 
@@ -129,14 +155,109 @@ public:
     Head == NULL ? Head = NewAccount : NewAccount->Next = Head; Head = NewAccount;
   }
 
+  /*
+    Function responsible for allowing Client to create an application for a Loan
+    @params {string} Username for Identification and Authentication
+    @params {string} Password for Authentication
+  */
+  void ApplyForLoan(string Username, string Password){
+    User* CurrentUser = Head;
 
-  void AdminLogin(string Username, string Password){
-    // Main admin session loop
-    bool AdminSession = true;
-    while(AdminSession){
-      // Admin stuff here
+    // Terminates the function if the List is empty
+    if(CurrentUser == NULL)
+      return;
+
+    while(CurrentUser != NULL){
+      if(CurrentUser->GetUsername() == Username && CurrentUser->GetPassword() == Password){
+        double Amount;
+        std::cout<<"<======================================>\n";
+        std::cout<<"<          Apply for a Loan            >\n";
+        std::cout<<"<======================================>\n";
+        while(Amount>=3000){
+          std::cout<<" <Amount to Loan> -> ";std::cin>>Amount;
+        }
+        CurrentUser->SetLoan(Amount);
+        return;
+      }
+      CurrentUser = CurrentUser->Next;
     }
   }
+
+  /*
+    Function responsible for Loggin in Client and giving them several features to do with their account
+    @params {string} Username For Identification and Authentication
+    @params {string} Password for Authentication
+
+    NOTE:
+    By now you're probably laughing at how inefficient the entire program is
+  */
+  void ClientLogin(string Username, string Password){
+
+    User* CurrentUser = Head;
+
+    // List is empty
+    if(CurrentUser==NULL)
+      return;
+
+    // Traverses the entire list looking for the right inputted Username and Password
+    while(CurrentUser!=NULL){
+      // Verification logic
+      if(CurrentUser->GetUsername() == Username && CurrentUser->GetPassword() == Password){
+        // Main Logon session loop
+        bool ClientSession = true;
+        while(ClientSession){
+            int Choice;
+            std::cout<<"<=======================================>\n";
+            std::cout<<"<   Client Login Session                >\n";
+            std::cout<<"<   Made by: Sean Christian Lozana      >\n";
+            std::cout<<"<                                       >\n";
+            std::cout<<"<   <1> Check Application Status        >\n";
+            std::cout<<"<   <2> Pay Monthly                     >\n";
+            std::cout<<"<   <3> Check Balance                   >\n";
+            std::cout<<"<   <4> Exit                            >\n";
+            std::cout<<"<======================================> \n";
+            std::cout<<" <User in Session> -> ";CurrentUser->GetFullname();std::cout<<"\n";
+            std::cout<<" [ CHOICE -> ] ";std::cin>>Choice;
+            switch (Choice) {
+              // Case that allows client to check their Loan application status
+              case 1:{
+                clear();
+                std::cout<<"<======================================>\n";
+                std::cout<<"<    Check Client Application Status   >\n";
+                std::cout<<"<======================================>\n";
+                std::cout<<" <Loan Application Status> -> ";CurrentUser->GetApprovalStatus();std::cout<<"\n";
+                break;
+              }
+              // Case that allows client to pay their balance
+              case 2: {
+                clear();
+                double Amount;
+                std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
+                std::cout<<" <Amount to Pay> -> ";std::cin>>Amount;
+                CurrentUser->Pay(Amount);
+                break;
+              }
+              case 3: {
+                clear();
+                std::cout<<"<======================================>\n";
+                std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
+                std::cout<<"<======================================>\n";
+                break;
+              }
+              // Exits the Client to the Login client session loop
+              case 4: {
+                ClientSession = false;
+                break;
+              }
+              default:
+                break;
+            }
+        }
+      }
+
+      CurrentUser = CurrentUser->Next;
+    }
+}
 
 
 };

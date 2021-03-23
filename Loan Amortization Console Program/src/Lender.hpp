@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include "Client.hpp"
+#include "Clear.hpp"
 
 using std::string;
 
@@ -20,8 +21,6 @@ public:
   public:
     // Next pointer that will point to the next node
     Loan* Next;
-    // Loan class will also store a List of client
-    Client Applicant;
 
     /*
       Constructor that will initialize the Loan application
@@ -75,9 +74,12 @@ public:
     }
     // returns the Id of the Applicant
     int GetLoanId(){
-      return this->Id;
+      return this->ApplicationId;
     }
   };
+
+  // Loan class will also store a List of client
+  Client Applicant;
 
   // Initial state of the List
   Loan* Head = NULL;
@@ -95,35 +97,33 @@ public:
 
   /*
      Function that handles Login authentication for the Lender
-     @params {string} Name for Identification and Authentication       
+     @params {string} Name for Identification and Authentication
      @params {string} Password for Authentication
   */
   void Login(string Name, string Password){
     Loan* CurrentApplication = Head;
-	
+
     if(CurrentApplication == NULL)
-	return;    
+	return;
 
     while(CurrentApplication != NULL){
-    	
-	if(CurrentApplication->GetName() == Name && CurrentApplication->GetPassword() == Password){
-	  bool isLoggedIn = true;
-	  while(isLoggedIn){
-	  int Choice;
-	  std::cout<<" Lending Application Console Program \n";
-	  std::cout<<" [1] Approve a Loan Application \n";
-	  switch(Choice){
-	  	case 1:	{
-		// Approval of Application code block goes here
-		break;		
-	  	}
-		default:
-		break;
-	  }
-	}
-
-	CurrentApplication = CurrentApplication->Next;
+	     if(CurrentApplication->GetName() == Name && CurrentApplication->GetPassword() == Password){
+    	  bool isLoggedIn = true;
+    	  while(isLoggedIn){
+    	  int Choice;
+    	  std::cout<<" Lending Application Console Program \n";
+    	  std::cout<<" [1] Approve a Loan Application \n";
+    	  switch(Choice){
+    	  	case 1:	{
+    		// Approval of Application code block goes here
+  		    break;
+    	  	}
+    		default:
+    		  break;
+    	  }
+  	   }
     }
-
+    CurrentApplication = CurrentApplication->Next;
   }
+}
 };
