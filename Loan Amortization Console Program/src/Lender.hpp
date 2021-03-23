@@ -111,8 +111,13 @@ public:
     	  bool isLoggedIn = true;
     	  while(isLoggedIn){
     	  int Choice;
-    	  std::cout<<" Lending Application Console Program \n";
-    	  std::cout<<" [1] Approve a Loan Application \n";
+        std::cout<<"<=======================================>\n";
+        std::cout<<"<   Lender Login Session                >\n";
+        std::cout<<"<   Made by: Sean Christian Lozana      >\n";
+        std::cout<<"<                                       >\n";
+        std::cout<<"<   <1> Approve Loan Applications       >\n";
+        std::cout<<"<   <2> Logout                          >\n";
+        std::cout<<"<=======================================> \n";
     	  switch(Choice){
     	  	case 1:	{
     		// Approval of Application code block goes here

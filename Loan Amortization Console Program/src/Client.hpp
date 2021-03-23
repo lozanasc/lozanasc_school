@@ -56,8 +56,11 @@ public:
       @params {string} Username for Identification and Authentication
       @params {string} Password for Authentication
     */
-    User(int Id, string Name, string Username, string Password){
+    User(int Id, int MonthsToPay, double Amount, string LoanType, string Name, string Username, string Password){
       this->Id = Id;
+      this->MonthlyPlan = MonthsToPay;
+      this->LoanType = LoanType;
+      this->Loan = this->Balance = Amount;
       this->Fullname = Name;
       this->Username = Username;
       this->Password = Password;
@@ -150,35 +153,28 @@ public:
     @params {string} Username for Account Identification and Authentication
     @params {string} Password for Account Authentication
   */
-  void CreateClientAccount(int Id, string Name, string Username, string Password){
-    User* NewAccount = new User(Id, Name, Username, Password);
+  void CreateClientAccount(int Id, int MonthsToPay, double Amount, string LoanType, string Name, string Username, string Password){
+    User* NewAccount = new User(Id, MonthsToPay, Amount, LoanType, Name, Username, Password);
     Head == NULL ? Head = NewAccount : NewAccount->Next = Head; Head = NewAccount;
   }
 
   /*
-    Function responsible for allowing Client to create an application for a Loan
-    @params {string} Username for Identification and Authentication
-    @params {string} Password for Authentication
+    Function that outputs all the existing client information
   */
-  void ApplyForLoan(string Username, string Password){
+  void GetClientList(){
     User* CurrentUser = Head;
 
-    // Terminates the function if the List is empty
     if(CurrentUser == NULL)
       return;
 
-    while(CurrentUser != NULL){
-      if(CurrentUser->GetUsername() == Username && CurrentUser->GetPassword() == Password){
-        double Amount;
-        std::cout<<"<======================================>\n";
-        std::cout<<"<          Apply for a Loan            >\n";
-        std::cout<<"<======================================>\n";
-        while(Amount>=3000){
-          std::cout<<" <Amount to Loan> -> ";std::cin>>Amount;
-        }
-        CurrentUser->SetLoan(Amount);
-        return;
-      }
+    std::cout<<"<======================================>\n";
+    std::cout<<"<    Client Information Master List    >\n";
+    std::cout<<"<======================================>\n";
+    while(CurrentUser!=NULL){
+      std::cout<<"Fullname: ";CurrentUser->GetFullname();
+      std::cout<<"\nBalance: ";CurrentUser->GetBalance();
+      std::cout<<"\nMonths to Pay: ";CurrentUser->GetMonthlyPlan();
+      std::cout<<"\nLoan Type: ";CurrentUser->GetLoanType();
       CurrentUser = CurrentUser->Next;
     }
   }
@@ -215,7 +211,7 @@ public:
             std::cout<<"<   <2> Pay Monthly                     >\n";
             std::cout<<"<   <3> Check Balance                   >\n";
             std::cout<<"<   <4> Exit                            >\n";
-            std::cout<<"<======================================> \n";
+            std::cout<<"<=======================================> \n";
             std::cout<<" <User in Session> -> ";CurrentUser->GetFullname();std::cout<<"\n";
             std::cout<<" [ CHOICE -> ] ";std::cin>>Choice;
             switch (Choice) {
@@ -231,10 +227,17 @@ public:
               // Case that allows client to pay their balance
               case 2: {
                 clear();
-                double Amount;
-                std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
-                std::cout<<" <Amount to Pay> -> ";std::cin>>Amount;
-                CurrentUser->Pay(Amount);
+                if(CurrentUser->GetBalance() <= 0 ){
+                  std::cout<<"<======================================>\n";
+                  std::cout<<"<         No on-going Loan Plan        >\n";
+                  std::cout<<"<======================================>\n";
+                }
+                else {
+                  double Amount;
+                  std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
+                  std::cout<<" <Amount to Pay> -> ";std::cin>>Amount;
+                  CurrentUser->Pay(Amount);
+                }
                 break;
               }
               case 3: {
@@ -253,11 +256,36 @@ public:
                 break;
             }
         }
+        return;
       }
-
       CurrentUser = CurrentUser->Next;
     }
 }
 
+  void Approval(string Username){
+    User* ClientToApprove = Head;
+    if(ClientToApprove==NULL)
+      return;
+    while(ClientToApprove!=NULL){
+      if(ClientToApprove->GetUsername() == Username){
+        clear();
+        string Choice;
+        std::cout<<"Fullname: ";ClientToApprove->GetFullname();
+        std::cout<<"\nBalance: ";ClientToApprove->GetBalance();
+        std::cout<<"\nMonths to Pay: ";ClientToApprove->GetMonthlyPlan();
+        std::cout<<"\nLoan Type: ";ClientToApprove->GetLoanType();
+        std::cout<<" <Type Approve to Approve and Decline to Reject Application> \n";
+        std::cout<<"  -> ";std::cin>>Choice;
+        if(Choice == "Approve"){
+          ClientToApprove->SetApprovalStatus(true);
+        }
+        else {
+          ClientToApprove->SetApprovalStatus(false);
+        }
+        return;
+      }
+      ClientToApprove = ClientToApprove->Next;
+    }
+  }
 
 };
