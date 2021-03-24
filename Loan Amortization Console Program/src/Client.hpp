@@ -171,10 +171,10 @@ public:
     std::cout<<"<    Client Information Master List    >\n";
     std::cout<<"<======================================>\n";
     while(CurrentUser!=NULL){
-      std::cout<<"Fullname: ";CurrentUser->GetFullname();
-      std::cout<<"\nBalance: ";CurrentUser->GetBalance();
-      std::cout<<"\nMonths to Pay: ";CurrentUser->GetMonthlyPlan();
-      std::cout<<"\nLoan Type: ";CurrentUser->GetLoanType();
+      std::cout<<"Fullname: "<<CurrentUser->GetFullname();
+      std::cout<<"\nBalance: "<<CurrentUser->GetBalance();
+      std::cout<<"\nMonths to Pay: "<<CurrentUser->GetMonthlyPlan();
+      std::cout<<"\nLoan Type: "<<CurrentUser->GetLoanType();
       CurrentUser = CurrentUser->Next;
     }
   }
@@ -205,14 +205,14 @@ public:
             int Choice;
             std::cout<<"<=======================================>\n";
             std::cout<<"<   Client Login Session                >\n";
-            std::cout<<"<   Made by: Sean Christian Lozana      >\n";
             std::cout<<"<                                       >\n";
             std::cout<<"<   <1> Check Application Status        >\n";
             std::cout<<"<   <2> Pay Monthly                     >\n";
             std::cout<<"<   <3> Check Balance                   >\n";
             std::cout<<"<   <4> Exit                            >\n";
             std::cout<<"<=======================================> \n";
-            std::cout<<" <User in Session> -> ";CurrentUser->GetFullname();std::cout<<"\n";
+            std::cout<<" <User in Session> -> "<<CurrentUser->GetFullname();
+            std::cout<<"\n";
             std::cout<<" [ CHOICE -> ] ";std::cin>>Choice;
             switch (Choice) {
               // Case that allows client to check their Loan application status
@@ -270,11 +270,11 @@ public:
       if(ClientToApprove->GetUsername() == Username){
         clear();
         string Choice;
-        std::cout<<"Fullname: ";ClientToApprove->GetFullname();
-        std::cout<<"\nBalance: ";ClientToApprove->GetBalance();
-        std::cout<<"\nMonths to Pay: ";ClientToApprove->GetMonthlyPlan();
-        std::cout<<"\nLoan Type: ";ClientToApprove->GetLoanType();
-        std::cout<<" <Type Approve to Approve and Decline to Reject Application> \n";
+        std::cout<<"Fullname: "<<ClientToApprove->GetFullname();
+        std::cout<<"\nBalance: "<<ClientToApprove->GetBalance();
+        std::cout<<"\nMonths to Pay: "<<ClientToApprove->GetMonthlyPlan();
+        std::cout<<"\nLoan Type: "<<ClientToApprove->GetLoanType();
+        std::cout<<"\n<Type Approve to Approve and Decline to Reject Application> \n";
         std::cout<<"  -> ";std::cin>>Choice;
         if(Choice == "Approve"){
           ClientToApprove->SetApprovalStatus(true);
