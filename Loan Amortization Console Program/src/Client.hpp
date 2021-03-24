@@ -227,14 +227,29 @@ public:
               // Case that allows client to pay their balance
               case 2: {
                 clear();
-                if(CurrentUser->GetBalance() <= 0 ){
+                if(CurrentUser->GetBalance() <= 0){
                   std::cout<<"<======================================>\n";
                   std::cout<<"<         No on-going Loan Plan        >\n";
                   std::cout<<"<======================================>\n";
                 }
                 else {
                   double Amount;
+                  /*
+                    How Amortization is Calculated
+                      cli[clients].principal=cli[clients].loan/cli[clients].monthlyloan;
+                      cli[clients].iinterest=cli[clients].interest/100;
+                      cli[clients].minterest=cli[clients].iinterest/12;
+                      cli[clients].interestb=cli[clients].iinterest*cli[clients].loan;
+                      cli[clients].interestp=cli[clients].loan+cli[clients].interestb;
+                      cli[clients].monthlypayment=cli[clients].interestp/cli[clients].monthlyloan;
+                  */
+                  clear();
+                  std::cout<<"<======================================>\n";
+                  std::cout<<"<                 >\n";
+                  std::cout<<"<======================================>\n";
+                  
                   std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
+                  std::cout<<" <Principal Balance> -> "<<(double)(CurrentUser->GetBalance() / CurrentUser->GetMonthlyPlan())<<"\n";
                   std::cout<<" <Amount to Pay> -> ";std::cin>>Amount;
                   CurrentUser->Pay(Amount);
                 }
