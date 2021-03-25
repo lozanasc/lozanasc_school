@@ -1,4 +1,4 @@
-<img src="assets/program-snapshopt-menu.png"/>
+<img src="assets/menu.png"/>
 <br/>
 <h3>
 A Terminal-based Loan Amortization Console Program
@@ -70,7 +70,7 @@ Make sure you have <a href="https://gcc.gnu.org/install/">`gcc/g++`</a> installe
   
   Lender Client List
   
-  <img src="assets/lender_getlcient_sample.png"/>
+  <img src="assets/lender_getclient_sample.png"/>
 
 
   ## Contribution
