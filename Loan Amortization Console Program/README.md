@@ -54,7 +54,7 @@ Make sure you have <a href="https://gcc.gnu.org/install/">`gcc/g++`</a> installe
   
   Client Amortization Table
   
-  <img src="assets/client_amortization_table.png"/>
+  <img src="assets/client_amortization_table_sample.png"/>
   
   
 
