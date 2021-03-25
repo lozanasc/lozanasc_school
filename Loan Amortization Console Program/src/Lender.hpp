@@ -118,8 +118,9 @@ public:
         std::cout<<"<   Lender Login Session                >\n";
         std::cout<<"<                                       >\n";
         std::cout<<"<   <1> Approve Loan Applications       >\n";
-        std::cout<<"<   <2> Logout                          >\n";
-        std::cout<<"<=======================================> \n";
+        std::cout<<"<   <2> Check Application List          >\n";
+        std::cout<<"<   <3> Logout                          >\n";
+        std::cout<<"<=======================================>\n";
         std::cout<<"< CHOICE > ";std::cin>>Choice;
     	  switch(Choice){
     	  	case 1:	{
@@ -131,6 +132,11 @@ public:
 		      break;
     	  	}
           case 2: {
+            clear();
+            Applicant.GetClientList();
+            break;
+          }
+          case 3: {
             isLoggedIn = false;
             break;
           }
@@ -144,10 +150,11 @@ public:
   }
 }
 
+  // Wrapper function for the Client Login to be accessbile to the Lender class
   void ClientLogin(string Username, string Password){
     Applicant.ClientLogin(Username, Password);
   }
-
+  // Wrapper function for the Client Registration to be accessbile to the Lender class
   void ClientRegistration(int Id, int MonthsToPay, double Amount, string LoanType, string Name, string Username, string Password){
     Applicant.CreateClientAccount(Id, MonthsToPay, Amount, LoanType, Name, Username, Password);
   }

@@ -1,5 +1,6 @@
 /*
   Made by Sean Christian Lozana
+  NOTE: Calculations are probably wrong... so you might wanna dig in deeper into how amortization and compound loan works.
 */
 
 // Dependency Imports
@@ -14,10 +15,11 @@
 */
 Lending Corporation;
 
-// Starting function that is responsilbe for housing the main user interface of the program
+// Starting function that is responsible for housing the main user interface of the program
 void Start(){
   int Choice;
   bool mainSession = true;
+  // Main session loop for the main user interface
   while(mainSession){
     std::cout<<"<=======================================>\n";
     std::cout<<"<      Loan Amortization Program        >\n";
@@ -28,10 +30,12 @@ void Start(){
     std::cout<<"<=======================================>\n";
     std::cout<<" < CHOICE > ";std::cin>>Choice;
     switch(Choice){
+      // This case is responsible for housing all client features made
       case 1: {
         clear();
         int Choice;
         bool clientSession = true;
+        // sub loop for client session
         while(clientSession){
           std::cout<<"<=======================================>\n";
           std::cout<<"<      Client Options                   >\n";
@@ -41,6 +45,7 @@ void Start(){
           std::cout<<"<=======================================>\n";
           std::cout<<" < CHOICE > ";std::cin>>Choice;
           switch (Choice) {
+            // This case allows client to apply for a loan application
             case 1: {
               clear();
               int Id, MonthsToPay, ChoiceMTP;
@@ -63,7 +68,7 @@ void Start(){
               std::cout<<" < How much do you want to Loan > ";std::cin>>Amount;
               clear();
               std::cout<< "<Monthly Plan> \n 1 - < 18mos > \n 2 - < 12mos > \n 3 - < 6mos >\n";
-              std::cout<<" < How long are you willing to pay off the loan in Months > ";std::cin>>ChoiceMTP;
+              std::cout<<"< How long are you willing to pay off the loan in Months > ";std::cin>>ChoiceMTP;
               switch(ChoiceMTP){
                 case 1: {
                   MonthsToPay = 18;
@@ -84,17 +89,19 @@ void Start(){
               Corporation.ClientRegistration(Id, MonthsToPay, Amount, LoanType, Fullname, Username, Password);
               break;
             }
+            // This case allows client to login into their accounts
             case 2: {
               string Username, Password;
               std::cout<<"<======================================>\n";
               std::cout<<"<              Client Login            >\n";
               std::cout<<"<======================================>\n";
               std::cout<<" < Username > ";std::cin>>Username;
-              std::cout<<" < Password >";std::cin>>Password;
+              std::cout<<" < Password > ";std::cin>>Password;
               Corporation.ClientLogin(Username, Password);
               clear();
               break;
             }
+            // Terminates the sub loop and goes back to the main loop
             case 3: {
               clientSession = false;
               break;
@@ -106,20 +113,22 @@ void Start(){
         }
         break;
       }
+      // This case is responsible for housing all lender features made
       case 2: {
         clear();
         int Choice;
         bool lenderSession = true;
+        // Lender session sub loop
         while(lenderSession){
           std::cout<<"<=======================================>\n";
           std::cout<<"<      Lender Options                   >\n";
           std::cout<<"<      <1> Register                     >\n";
           std::cout<<"<      <2> Login                        >\n";
-          std::cout<<"<      <3> Check List                   >\n";
-          std::cout<<"<      <4> Exit                         >\n";
+          std::cout<<"<      <3> Exit                         >\n";
           std::cout<<"<=======================================>\n";
           std::cout<<" < CHOICE > ";std::cin>>Choice;
           switch (Choice) {
+            // this case allows lender to create an account as a Lender entity
             case 1: {
               clear();
               int Id;
@@ -133,6 +142,7 @@ void Start(){
               Corporation.LenderRegistration(Id, Username, Password);
               break;
             }
+            // this case allows lender to login into their accounts
             case 2: {
               clear();
               string Username, Password;
@@ -145,10 +155,8 @@ void Start(){
 
               break;
             }
+            // Terminates the sub loop and goes back to the main loop
             case 3: {
-              break;
-            }
-            case 4: {
               lenderSession = false;
               break;
             }
@@ -158,6 +166,7 @@ void Start(){
         }
         break;
       }
+      // Terminates the main loop thus terminating the program
       case 3: {
         mainSession = false;
         break;
