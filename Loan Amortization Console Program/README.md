@@ -39,25 +39,38 @@ Make sure you have <a href="https://gcc.gnu.org/install/">`gcc/g++`</a> installe
   ## Sample
 
   ###### Menu of the Program
-  <img src="assets/program-snapshopt-menu.png"/>
+  <img src="assets/menu.png"/>
 
 
-  ###### Enrollment Form
-  Part 1
+  ###### Client
+  
+  Client Options
 
-  <img src="assets/program-snapshopt-enrollment-form.png"/>  
+  <img src="assets/client_options.png"/>  
 
-  Part 2
+  Client Dashboard
 
-  <img src="assets/program-snapshopt-enrollment-form1.png"/>
+  <img src="assets/client_dashboard.png"/>
+  
+  Client Amortization Table
+  
+  <img src="assets/client_amortization_table.png"/>
+  
+  
 
-
-  ###### Admin Dashboard
-  <img src="assets/program-snapshot-admin-dashboard.png"/>
-
-  ###### Enrollee Dashboard
-  <img src="assets/program-snapshot-enrollee-dashboard.png"/>
-
+  ###### Lender
+  
+  Lender Options
+  
+  <img src="assets/lender_options.png"/>
+  
+  Lender Dashboard
+  
+  <img src="assets/lender_dashboard.png"/>
+  
+  Lender Client List
+  
+  <img src="assets/lender_getlcient_sample.png"/>
 
 
   ## Contribution
