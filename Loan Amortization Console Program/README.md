@@ -42,7 +42,7 @@ Make sure you have <a href="https://gcc.gnu.org/install/">`gcc/g++`</a> installe
   <img src="assets/menu.png"/>
 
 
-  ###### Client
+  ### Client
   
   Client Options
 
@@ -58,7 +58,7 @@ Make sure you have <a href="https://gcc.gnu.org/install/">`gcc/g++`</a> installe
   
   
 
-  ###### Lender
+  ### Lender
   
   Lender Options
   
