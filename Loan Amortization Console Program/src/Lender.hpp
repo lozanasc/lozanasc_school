@@ -69,6 +69,8 @@ public:
     string GetName(){
       return this->Name;
     }
+    // return Password for Authentication
+    // Very bad practice lol
     string GetPassword(){
       return this->Password;
     }
@@ -90,7 +92,7 @@ public:
     @params {string} Name for Identification and Authentication
     @params {string} Password for Identification and Authentication
   */
-  void CreateApplication(int Id, string Name, string Password){
+  void LenderRegistration(int Id, string Name, string Password){
     Loan* NewApplication = new Loan(Id, Name, Password);
     Head == NULL ? Head = NewApplication : NewApplication->Next = Head; Head = NewApplication;
   }
@@ -104,35 +106,57 @@ public:
     Loan* CurrentApplication = Head;
 
     if(CurrentApplication == NULL)
-	return;
+	   return;
 
     while(CurrentApplication != NULL){
 	     if(CurrentApplication->GetName() == Name && CurrentApplication->GetPassword() == Password){
+        clear();
     	  bool isLoggedIn = true;
     	  while(isLoggedIn){
     	  int Choice;
         std::cout<<"<=======================================>\n";
         std::cout<<"<   Lender Login Session                >\n";
-        std::cout<<"<   Made by: Sean Christian Lozana      >\n";
         std::cout<<"<                                       >\n";
         std::cout<<"<   <1> Approve Loan Applications       >\n";
-        std::cout<<"<   <2> Logout                          >\n";
-        std::cout<<"<=======================================> \n";
+        std::cout<<"<   <2> Check Application List          >\n";
+        std::cout<<"<   <3> Logout                          >\n";
+        std::cout<<"<=======================================>\n";
+        std::cout<<"< CHOICE > ";std::cin>>Choice;
     	  switch(Choice){
     	  	case 1:	{
     		  clear();
           string Username;
           Applicant.GetClientList();
-          std::cout<<"<Enter Username of Client to Approve> \n: ";std::cin>>Username;
+          std::cout<<"\n<Enter Username of Client to Approve> \n: ";std::cin>>Username;
           Applicant.Approval(Username);
 		      break;
     	  	}
+          case 2: {
+            clear();
+            Applicant.GetClientList();
+            break;
+          }
+          case 3: {
+            isLoggedIn = false;
+            break;
+          }
     		default:
     		  break;
     	  }
   	   }
+       return;
     }
     CurrentApplication = CurrentApplication->Next;
   }
 }
+
+  // Wrapper function for the Client Login to be accessbile to the Lender class
+  void ClientLogin(string Username, string Password){
+    Applicant.ClientLogin(Username, Password);
+  }
+  // Wrapper function for the Client Registration to be accessbile to the Lender class
+  void ClientRegistration(int Id, int MonthsToPay, double Amount, string LoanType, string Name, string Username, string Password){
+    Applicant.CreateClientAccount(Id, MonthsToPay, Amount, LoanType, Name, Username, Password);
+  }
+
 };

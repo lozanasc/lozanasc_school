@@ -1,36 +1,14 @@
 /*
   Made by Sean Christian Lozana
-
-  Complete this Project today:
-  4-Session Pomodoro
-  [X] Session 1
-    [] Break 1
-  [] Session 2
-    [] Break 2
-  [] Session 3
-    [] Break 3
-  [] Session 4
-    [] Break 4
-
-  Client should be able to do the ff:
-
-  - Client should be able to loan an amount of no less than 3,000 PHP
-  - Client should be able to choose how many months client is willing to pay
-
-  Client Information should contain the ff:
-    - Name
-    - Amount Loaned
-    - Principal with Interest
-    - Monthly Payment
-    - Approval Status
-    - Loan Type
 */
 
 // Dependency Imports
 #include <iostream>
+#include <iomanip>
 #include "Clear.hpp"
 
 using std::string;
+using std::setw;
 
 /*
   This class is responsible for storing User clients in a List
@@ -41,7 +19,7 @@ public:
 
     int Id, MonthlyPlan;
     string Fullname, Username, Password, LoanType;
-    double Loan, Balance, MonthlyPayment;
+    double Interest, Loan, Balance;
     bool ApprovalStatus;
 
   public:
@@ -64,6 +42,18 @@ public:
       this->Fullname = Name;
       this->Username = Username;
       this->Password = Password;
+    }
+
+    /*
+      Sets Client's interest rate
+      @params {double} Amount value to be assigned for the Interest attribute
+    */
+    void SetInterest(double Amount){
+      this->Interest = Amount;
+    }
+    // returns the client's interest rate
+    double GetInterest(){
+      return this->Interest;
     }
 
     /*
@@ -113,8 +103,8 @@ public:
       However will automatically output the status of your Application
       as a Message
     */
-    void GetApprovalStatus(){
-      this->ApprovalStatus ? std::cout<<"Approved" : std::cout<<"Pending"; return;
+    string GetApprovalStatus(){
+      return this->ApprovalStatus ? "Approved" : "Pending";
     }
 
     // Sets client's installment plan in Months
@@ -159,7 +149,7 @@ public:
   }
 
   /*
-    Function that outputs all the existing client information
+    Function that outputs all the existing client information in the list
   */
   void GetClientList(){
     User* CurrentUser = Head;
@@ -171,10 +161,13 @@ public:
     std::cout<<"<    Client Information Master List    >\n";
     std::cout<<"<======================================>\n";
     while(CurrentUser!=NULL){
-      std::cout<<"Fullname: ";CurrentUser->GetFullname();
-      std::cout<<"\nBalance: ";CurrentUser->GetBalance();
-      std::cout<<"\nMonths to Pay: ";CurrentUser->GetMonthlyPlan();
-      std::cout<<"\nLoan Type: ";CurrentUser->GetLoanType();
+      std::cout<<"\n<======================================>\n";
+      std::cout<<"Fullname: "<<CurrentUser->GetFullname();
+      std::cout<<"\nUsername: "<<CurrentUser->GetUsername();
+      std::cout<<"\nBalance: "<<CurrentUser->GetBalance();
+      std::cout<<"\nMonths to Pay: "<<CurrentUser->GetMonthlyPlan();
+      std::cout<<"\nLoan Type: "<<CurrentUser->GetLoanType();
+      std::cout<<"\n<======================================>\n";
       CurrentUser = CurrentUser->Next;
     }
   }
@@ -205,14 +198,14 @@ public:
             int Choice;
             std::cout<<"<=======================================>\n";
             std::cout<<"<   Client Login Session                >\n";
-            std::cout<<"<   Made by: Sean Christian Lozana      >\n";
             std::cout<<"<                                       >\n";
             std::cout<<"<   <1> Check Application Status        >\n";
             std::cout<<"<   <2> Pay Monthly                     >\n";
             std::cout<<"<   <3> Check Balance                   >\n";
             std::cout<<"<   <4> Exit                            >\n";
             std::cout<<"<=======================================> \n";
-            std::cout<<" <User in Session> -> ";CurrentUser->GetFullname();std::cout<<"\n";
+            std::cout<<" <User in Session> -> "<<CurrentUser->GetFullname();
+            std::cout<<"\n";
             std::cout<<" [ CHOICE -> ] ";std::cin>>Choice;
             switch (Choice) {
               // Case that allows client to check their Loan application status
@@ -221,30 +214,56 @@ public:
                 std::cout<<"<======================================>\n";
                 std::cout<<"<    Check Client Application Status   >\n";
                 std::cout<<"<======================================>\n";
-                std::cout<<" <Loan Application Status> -> ";CurrentUser->GetApprovalStatus();std::cout<<"\n";
+                std::cout<<" <Loan Application Status> -> "<<CurrentUser->GetApprovalStatus()<<"\n";
                 break;
               }
               // Case that allows client to pay their balance
               case 2: {
                 clear();
-                if(CurrentUser->GetBalance() <= 0 ){
+                if(CurrentUser->GetBalance() <= 0 || CurrentUser->GetApprovalStatus() == "Pending"){
                   std::cout<<"<======================================>\n";
                   std::cout<<"<         No on-going Loan Plan        >\n";
                   std::cout<<"<======================================>\n";
                 }
                 else {
-                  double Amount;
+                  double Amount, Principal, InitialInterest, MonthlyInterest, BalanceInterest, PrincipalInterest, MonthlyPayment;
+                  Principal = (double)(CurrentUser->GetBalance() / CurrentUser->GetMonthlyPlan());
+                  InitialInterest = (double)(CurrentUser->GetInterest() / 100);
+                  MonthlyInterest = (double)(InitialInterest / 12);
+                  BalanceInterest = (double)(InitialInterest * CurrentUser->GetBalance());
+                  PrincipalInterest = (double)(CurrentUser->GetBalance() + BalanceInterest);
+                  MonthlyPayment = (double)(PrincipalInterest / CurrentUser->GetMonthlyPlan());
+                  clear();
+                  std::cout<<"<======================================>\n";
+                  std::cout<<"<           Amortization Plan          >\n";
+                  std::cout<<"<======================================>\n";
+                  for(int i=1; i<CurrentUser->GetMonthlyPlan()+1; i++){
+                    double DiminishingBalance = (double)(PrincipalInterest -= MonthlyPayment);
+                    std::cout<<"< - "<<i<<setw(22)<<(double)(CurrentUser->GetBalance() - MonthlyPayment)<<setw(20)<<MonthlyPayment<<setw(20)<<DiminishingBalance<<" - >\n";
+                  }
+                  std::cout<<" <Client in Session> -> "<<CurrentUser->GetFullname()<<"\n";
                   std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
+                  std::cout<<" <Principal Balance> -> "<<(CurrentUser->GetInterest() * CurrentUser->GetBalance())<<"\n";
+                  std::cout<<"<======================================>\n";
+                  std::cout<<" <Monthly Payment> -> "<<MonthlyPayment<<"\n";
                   std::cout<<" <Amount to Pay> -> ";std::cin>>Amount;
+
                   CurrentUser->Pay(Amount);
                 }
                 break;
               }
               case 3: {
                 clear();
-                std::cout<<"<======================================>\n";
-                std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
-                std::cout<<"<======================================>\n";
+                if(CurrentUser->GetApprovalStatus() == "Pending"){
+                  std::cout<<"<======================================>\n";
+                  std::cout<<"<         No on-going Loan Plan        >\n";
+                  std::cout<<"<======================================>\n";
+                }
+                else {
+                  std::cout<<"<======================================>\n";
+                  std::cout<<" <Outstanding Balance> -> "<<CurrentUser->GetBalance()<<"\n";
+                  std::cout<<"<======================================>\n";
+                }
                 break;
               }
               // Exits the Client to the Login client session loop
@@ -262,6 +281,10 @@ public:
     }
 }
 
+  /*
+    Function responsible for finding the username in the list and allows user to set client application status
+    @params {string} Username key for the Client search
+  */
   void Approval(string Username){
     User* ClientToApprove = Head;
     if(ClientToApprove==NULL)
@@ -269,15 +292,21 @@ public:
     while(ClientToApprove!=NULL){
       if(ClientToApprove->GetUsername() == Username){
         clear();
+        double Interest;
         string Choice;
-        std::cout<<"Fullname: ";ClientToApprove->GetFullname();
-        std::cout<<"\nBalance: ";ClientToApprove->GetBalance();
-        std::cout<<"\nMonths to Pay: ";ClientToApprove->GetMonthlyPlan();
-        std::cout<<"\nLoan Type: ";ClientToApprove->GetLoanType();
-        std::cout<<" <Type Approve to Approve and Decline to Reject Application> \n";
+        std::cout<<"<======================================>\n";
+        std::cout<<"<       Client Application Form        >\n";
+        std::cout<<"<======================================>\n";
+        std::cout<<"Fullname: "<<ClientToApprove->GetFullname();
+        std::cout<<"\nBalance: "<<ClientToApprove->GetBalance();
+        std::cout<<"\nMonths to Pay: "<<ClientToApprove->GetMonthlyPlan();
+        std::cout<<"\nLoan Type: "<<ClientToApprove->GetLoanType();
+        std::cout<<"\n< Set Client Interest rate > \n";std::cin>>Interest;
+        std::cout<<"\n< Type 'Approve' to Approve and 'Decline' to Reject Application > \n";
         std::cout<<"  -> ";std::cin>>Choice;
         if(Choice == "Approve"){
           ClientToApprove->SetApprovalStatus(true);
+          ClientToApprove->SetInterest(Interest);
         }
         else {
           ClientToApprove->SetApprovalStatus(false);
