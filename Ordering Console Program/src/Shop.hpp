@@ -105,6 +105,7 @@ public:
               //
               break;
             }
+            // Terminates the session loop
             case 2: {
               LogonSession = false;
               break;
