@@ -53,6 +53,53 @@ public:
     string GetCustomer(){
       return this->CustomerName;
     }
+
+    // Getter function that returns the date of the transaction
+    string GetDate(){
+      return this->DTTransaction;
+    }
+
   };
+
+  // Initial state of the List
+  Log* Head = NULL;
+
+  /*
+    Function responsible for adding new Logged Sales record in the Sales List
+    @params {int} Id for Identification
+    @params {string} ItemName for Item Name and Identification
+    @params {double} Price for Item pricing
+    @params {string} DTTransaction is for the Date and Time of the Transaction to be included in the Logs
+  */
+  void GenerateSales(int Id, string ItemName, double Price, string DTTransaction){
+    Log* NewLog = new Log(Id, ItemName, Price, DTTransaction);
+    Head == NULL ? Head = NewLog : Head = NewLog->Next; Head = NewLog;
+  }
+
+  /*
+    Function responsbile for outputting all recorded sale logs which
+    traverses the List in a linear fashion o(n)
+  */
+  void AllSales(){
+
+    Log* CurrentLog = Head;
+
+    if (CurrentLog == NULL)
+      return;
+
+    std::cout<<"[===================================]\n";
+    std::cout<<"[      List of all Sales made:      ]\n";
+    std::cout<<"[===================================]\n";
+    while(CurrentLog!=NULL){
+
+      std::cout<<"[Transaction Date] : "<<CurrentLog->GetDate()<<"\n";
+      std::cout<<"[Salesperson Attending] : "<<CurrentLog->GetAttendant()<<"\n";
+      
+
+      CurrentLog = CurrentLog->Next;
+    }
+    std::cout<<"[===================================]\n";
+
+  }
 
 };

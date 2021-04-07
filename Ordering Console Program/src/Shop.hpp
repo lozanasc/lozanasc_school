@@ -68,7 +68,7 @@ public:
   */
   void CreateAccount(int Id, string Salesperson, string Username, string Password){
     Transactions* NewSalesperson = new Transactions(Id, Salesperson, Username, Password);
-    Head = NULL ? Head = NewSalesperson : NewSalesperson->Next = Head; Head = NewSalesperson;
+    Head == NULL ? Head = NewSalesperson : NewSalesperson->Next = Head; Head = NewSalesperson;
   }
 
   /*
