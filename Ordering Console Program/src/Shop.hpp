@@ -32,7 +32,7 @@ public:
       this->TransactionId = Id;
       this->Salesperson = Salesperson;
       this->Username = Username;
-      this->Password;
+      this->Password = Password;
       // Pointing Next pointer to NULL
       Next = NULL;
     }
@@ -93,7 +93,7 @@ public:
           std::cout<<"[ [2] Exit                          ]\n";
           std::cout<<"[===================================]\n";
           std::cout<<"[ Hello, "<<Account->GetSalesperson()<<" ]\n";
-          std::cout<<"[CHOICE] ";std::cin>>Choice;
+          std::cout<<"[ CHOICE ] ";std::cin>>Choice;
           switch(Choice){
             // This case is responsible for creating a new transaction
             case 1: {

@@ -31,7 +31,7 @@ public:
       this->Price = Price;
       this->Name = Name;
       this->Type = Type;
-
+      // Pointing Next pointer to NULL
       Next = NULL;
     }
 
