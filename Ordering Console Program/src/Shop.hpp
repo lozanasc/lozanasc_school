@@ -92,7 +92,7 @@ public:
           std::cout<<"[ [1] New Transaction               ]\n";
           std::cout<<"[ [2] Exit                          ]\n";
           std::cout<<"[===================================]\n";
-          std::cout<<"[ Hello, "<<Account->GetSalesperson()<<" ]\n";
+          std::cout<<"[ Hello , "<<Account->GetSalesperson()<<" ]\n";
           std::cout<<"[ CHOICE ] ";std::cin>>Choice;
           switch(Choice){
             // This case is responsible for creating a new transaction
@@ -102,7 +102,7 @@ public:
               string TransactionTime = (string) __TIME__;
               // Concatenating Date and Time into one single variable
               string TransactionDT = TransactionDate + " " + TransactionTime;
-              //
+              
               break;
             }
             // Terminates the session loop
