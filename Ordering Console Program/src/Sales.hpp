@@ -74,7 +74,7 @@ public:
   */
   void GenerateSales(int Id, string ItemName, double Price, string DTTransaction){
     Log* NewLog = new Log(Id, ItemName, Price, DTTransaction);
-    Head == NULL ? Head = NewLog : Head = NewLog->Next; Head = NewLog;
+    Head == NULL ? Head = NewLog : NewLog->Next = Head; Head = NewLog;
   }
 
   /*
@@ -82,7 +82,7 @@ public:
     traverses the List in a linear fashion o(n)
   */
   void AllSales(){
-
+    clear();
     Log* CurrentLog = Head;
 
     if (CurrentLog == NULL)
