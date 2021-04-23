@@ -88,25 +88,49 @@ public:
         // Logon session loop this will keep the Salesperson to do transaction as long as the condition remains fulfilled
         while(LogonSession){
           int Choice;
+
           std::cout<<"[===================================]\n";
           std::cout<<"[ [1] New Transaction               ]\n";
-          std::cout<<"[ [2] Exit                          ]\n";
+          std::cout<<"[ [2] New Transaction               ]\n";
+          std::cout<<"[ [3] View Inventory                ]\n";
+          std::cout<<"[ [4] Exit                          ]\n";
           std::cout<<"[===================================]\n";
           std::cout<<"[ Hello , "<<Account->GetSalesperson()<<" ]\n";
           std::cout<<"[ CHOICE ] ";std::cin>>Choice;
           switch(Choice){
             // This case is responsible for creating a new transaction
             case 1: {
+              MenuRef.ViewAvailableItems();
               // Responsible for grabbing built-in feature from g++ compiler to get platform's DATE and TIME information
               string TransactionDate = (string) __DATE__;
               string TransactionTime = (string) __TIME__;
               // Concatenating Date and Time into one single variable
               string TransactionDT = TransactionDate + " " + TransactionTime;
-              
+
+              break;
+            }
+            case 2: {
+              clear();
+              int Id, Qty;
+              string Name, Type;
+              double Price;
+              std::cout<<"[===================================]\n";
+              std::cout<<"[          Adding of Item           ]\n";
+              std::cout<<"[===================================]\n";
+              std::cout<<"[Enter New Item Id] : ";std::cin>>Id;
+              std::cout<<"[Enter New Item Name] : ";std::cin>>Name;
+              std::cout<<"[Enter New Item Type] : ";std::cin>>Type;
+              std::cout<<"[Enter New Item Price] : ";std::cin>>Price;
+              std::cout<<"[Enter New Item Quantity] : ";std::cin>>Qty;
+              MenuRef.AddItem(Id, Qty, Price, Name,Type);
               break;
             }
             // Terminates the session loop
-            case 2: {
+            case 3: {
+              MenuRef.ViewItems();
+              break;
+            }
+            case 4: {
               LogonSession = false;
               break;
             }
