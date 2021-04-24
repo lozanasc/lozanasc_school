@@ -26,6 +26,7 @@ void Start(){
     std::cout<<"[===================================]\n";
     std::cout<<"[ Choice ] : ";std::cin>>Choice;
     switch (Choice) {
+      // This case is responsible for signing in Salesperson
       case 1: {
         clear();
         string Name, Pass;
@@ -37,6 +38,7 @@ void Start(){
         Cafe.Login(Name, Pass);
         break;
       }
+      // This case is responsible for signing up Salesperson
       case 2: {
         clear();
         int Id;
