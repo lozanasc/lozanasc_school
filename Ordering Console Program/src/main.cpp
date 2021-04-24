@@ -53,6 +53,7 @@ void Start(){
         Cafe.CreateAccount(Id, CompleteName, Name, Pass);
         break;
       }
+      // This case is responsible for terminating the main program loop thus ending the program
       case 3: {
         ProgramSession = false;
         break;
