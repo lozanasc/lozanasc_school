@@ -91,7 +91,7 @@ public:
 
           std::cout<<"[===================================]\n";
           std::cout<<"[ [1] New Transaction               ]\n";
-          std::cout<<"[ [2] New Transaction               ]\n";
+          std::cout<<"[ [2] New Item                      ]\n";
           std::cout<<"[ [3] View Inventory                ]\n";
           std::cout<<"[ [4] Exit                          ]\n";
           std::cout<<"[===================================]\n";
